@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body,html,:root{
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    color: #d3d5d6;
+}
+
+*{
+    box-sizing: border-box;
+    border-color: #2f3336;
+}
