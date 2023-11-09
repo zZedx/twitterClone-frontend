@@ -6,8 +6,10 @@ import Header from "./Header";
 const AppLayout = () => {
   return (
     <div className="h-screen">
-      <SideBarLeft />
-      <main className="ml-[25%] w-2/4 border-r min-h-full">
+      <div className="hidden sm:block">
+        <SideBarLeft />
+      </div>
+      <main className="ml-0 sm:ml-24 xl:ml-[25%] w-full sm:w-[calc(100%-6rem)] md:w-3/4 lg:w-[calc(66.66%-6rem)] xl:w-2/4 border-r min-h-full">
         <Header />
         <Outlet />
       </main>

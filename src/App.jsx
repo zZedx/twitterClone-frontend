@@ -20,6 +20,10 @@ const router = createBrowserRouter([
         index: true,
       },
       {
+        path: "/messages",
+        element: <Home />,
+      },
+      {
         path: "home/:username",
         element: <div>profile</div>,
       },
