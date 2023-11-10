@@ -9,8 +9,8 @@ import {
   HiMagnifyingGlass,
   HiOutlineMagnifyingGlass,
   HiOutlineEllipsisHorizontal,
-  HiOutlineHandRaised,
 } from "react-icons/hi2";
+import { FaFeatherAlt } from "react-icons/fa";
 import Logo from "./Logo";
 import Button from "./Button";
 import Avatar from "./Avatar";
@@ -49,9 +49,9 @@ const SideBarLeft = () => {
         activeStyle={"font-bold"}
       />
 
-      <Button>
+      <Button width="full">
         <span className="hidden xl:block">Tweet</span>
-        <HiOutlineHandRaised className="block xl:hidden" />
+        <FaFeatherAlt className="block xl:hidden" />
       </Button>
 
       <div className="flex items-center gap-4 px-4 py-2 mt-auto mb-2 rounded-lg cursor-pointer xl:w-full hover:bg-secondary">
@@ -74,7 +74,7 @@ function StyledLink({ activeIcon, icon, activeStyle, text, to }) {
       to={to}
       className={({ isActive }) =>
         (isActive ? activeStyle : "font-semibold") +
-        " flex items-center xl:w-full gap-4 text-lg tracking-wide rounded-lg px-4 py-2 hover:bg-secondary"
+        " flex items-center xl:w-full gap-4 text-lg tracking-wide rounded-lg px-4 py-3 hover:bg-secondary"
       }
     >
       {({ isActive }) =>

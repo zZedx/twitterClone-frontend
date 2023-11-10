@@ -1,5 +1,15 @@
+import { useState } from "react";
+import Header from "../ui/Header";
+import CreatePostForm from "../features/posts/CreatePostForm";
+
 const Home = () => {
-  return <div>Home</div>;
+  const [filter , setFilter] = useState("for-you")
+  return (
+    <div>
+      <Header filter={filter} setFilter={setFilter}/>
+      <CreatePostForm/>
+    </div>
+  );
 };
 
 export default Home;

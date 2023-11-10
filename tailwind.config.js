@@ -6,7 +6,7 @@ export default {
       colors: {
         secondary: "#181818",
         brand: "#1a8cd8",
-        brandDisabled : "0f4e78"
+        brandDisabled : "#0f4e78"
       },
     },
   },
