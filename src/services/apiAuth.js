@@ -24,3 +24,8 @@ export const getUser = errorHandler(async() => {
     const res = await axios.get(apiUrl + "users/getUser", config);
     return res.data;
 });
+
+export const logout = errorHandler(async() => {
+    const res = await axios.get(apiUrl + "users/logout", config);
+    return res.data;
+});
