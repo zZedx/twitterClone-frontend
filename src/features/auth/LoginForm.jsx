@@ -1,18 +1,30 @@
 import { useForm } from "react-hook-form";
 import Button from "../../ui/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useLogin from "./useLogin";
+import useUser from "../user/useUser";
+import { useEffect } from "react";
+
 const LoginForm = () => {
+  const { user } = useUser();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      navigate("/home", { replace: true });
+    }
+  }, [user, navigate]);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const {login , status} = useLogin()
+  const { login, status } = useLogin();
 
-  function onSubmit(data){
-    login(data)
+  function onSubmit(data) {
+    login(data);
   }
   return (
     <div className="flex flex-col items-center justify-center w-screen h-screen gap-6 p-4">
@@ -27,6 +39,7 @@ const LoginForm = () => {
             type="email"
             id="email"
             disabled={status === "loading"}
+            defaultValue={"kartik@gmail.com"}
             {...register("email", { required: true })}
             className="p-2 bg-transparent border rounded"
           />
@@ -40,6 +53,7 @@ const LoginForm = () => {
             type="password"
             id="password"
             disabled={status === "loading"}
+            defaultValue={"kartik"}
             {...register("password", { required: true })}
             className="p-2 bg-transparent border rounded"
           />
@@ -51,12 +65,17 @@ const LoginForm = () => {
           type="submit"
           size="large"
           width="full"
-          style={{marginTop: "1.2rem"}}
+          style={{ marginTop: "1.2rem" }}
           disabled={status === "loading"}
         >
           Login
         </Button>
-        <span className="mt-3 mr-2 text-right">Not a user ? <Link to={"/register"} className="underline text-brand">Register</Link></span>
+        <span className="mt-3 mr-2 text-right">
+          Not a user ?{" "}
+          <Link to={"/register"} className="underline text-brand">
+            Register
+          </Link>
+        </span>
       </form>
     </div>
   );

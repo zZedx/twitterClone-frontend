@@ -1,7 +1,8 @@
-export const errorHandler = (fn) => async (req, res) => {
-    try {
-      await fn(req, res);
-    } catch (error) {
-      throw new Error(error.response.data.message);
-    }
-  };
+export const errorHandler = (fn) => async (...args) => {
+  try {
+    return await fn(...args);
+  } catch (error) {
+    console.error(error);
+    throw new Error(error.response.data.message);
+  }
+};

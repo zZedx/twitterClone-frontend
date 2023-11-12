@@ -19,3 +19,8 @@ export const register = errorHandler(async({username, password, email}) => {
     const res = await axios.post(apiUrl + "users/register", { username, password, email }, config);
     return res.data;
 });
+
+export const getUser = errorHandler(async() => {
+    const res = await axios.get(apiUrl + "users/getUser", config);
+    return res.data;
+});

@@ -1,10 +1,22 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+
 import Button from "../../ui/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useRegister from "./useRegister";
+import useUser from "../user/useUser";
 
 
 const RegisterForm = () => {
+  const { user } = useUser();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      navigate("/home", { replace: true });
+    }
+  }, [user, navigate]);
+
   const {
     register,
     handleSubmit,
