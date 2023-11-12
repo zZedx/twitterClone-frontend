@@ -13,3 +13,7 @@ body,html,:root{
     box-sizing: border-box;
     border-color: #2f3336;
 }
+
+*:disabled{
+    opacity: 0.5;
+}

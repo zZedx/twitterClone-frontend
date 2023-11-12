@@ -26,6 +26,7 @@ const LoginForm = () => {
           <input
             type="email"
             id="email"
+            disabled={status === "loading"}
             {...register("email", { required: true })}
             className="p-2 bg-transparent border rounded"
           />
@@ -38,6 +39,7 @@ const LoginForm = () => {
           <input
             type="password"
             id="password"
+            disabled={status === "loading"}
             {...register("password", { required: true })}
             className="p-2 bg-transparent border rounded"
           />
@@ -50,6 +52,7 @@ const LoginForm = () => {
           size="large"
           width="full"
           style={{marginTop: "1.2rem"}}
+          disabled={status === "loading"}
         >
           Login
         </Button>

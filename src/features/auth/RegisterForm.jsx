@@ -30,6 +30,7 @@ const RegisterForm = () => {
             type="text"
             id="username"
             placeholder="John doe"
+            disabled={status === "loading"}
             {...register("username", { required: true })}
             className="p-2 bg-transparent border rounded"
           />
@@ -43,6 +44,7 @@ const RegisterForm = () => {
             type="email"
             id="email"
             placeholder="test@gmail.com"
+            disabled={status === "loading"}
             {...register("email", { required: true })}
             className="p-2 bg-transparent border rounded"
           />
@@ -56,6 +58,7 @@ const RegisterForm = () => {
             type="password"
             id="password"
             placeholder="********"
+            disabled={status === "loading"}
             {...register("password", { required: true })}
             className="p-2 bg-transparent border rounded"
           />
@@ -67,6 +70,7 @@ const RegisterForm = () => {
           type="submit"
           size="large"
           width="full"
+          disabled={status === "loading"}
           style={{marginTop: "1.2rem"}}
         >
           Login
