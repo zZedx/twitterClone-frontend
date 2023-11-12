@@ -1,7 +1,8 @@
+import RegisterForm from '../features/auth/RegisterForm'
 
 const Register = () => {
   return (
-    <div>Register</div>
+    <RegisterForm/>
   )
 }
 
