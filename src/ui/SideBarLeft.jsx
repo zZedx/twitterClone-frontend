@@ -8,12 +8,11 @@ import {
   HiOutlineEnvelope,
   HiMagnifyingGlass,
   HiOutlineMagnifyingGlass,
-  HiOutlineEllipsisHorizontal,
 } from "react-icons/hi2";
 import { FaFeatherAlt } from "react-icons/fa";
 import Logo from "./Logo";
 import Button from "./Button";
-import Avatar from "./Avatar";
+import User from "../features/user/User";
 
 const SideBarLeft = () => {
   return (
@@ -54,16 +53,7 @@ const SideBarLeft = () => {
         <FaFeatherAlt className="block xl:hidden" />
       </Button>
 
-      <div className="flex items-center gap-4 px-4 py-2 mt-auto mb-2 rounded-lg cursor-pointer xl:w-full hover:bg-secondary">
-        <Avatar />
-        <div className="flex-col hidden xl:flex">
-          <span className="ml-1 font-bold">John Doe</span>
-          <span className="text-gray-500">@johndoe</span>
-        </div>
-        <div className="hidden ml-auto text-3xl text-white xl:block">
-          <HiOutlineEllipsisHorizontal />
-        </div>
-      </div>
+      <User />
     </aside>
   );
 };

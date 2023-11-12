@@ -4,13 +4,12 @@ import Button from "../../ui/Button";
 import { PiImageBold } from "react-icons/pi";
 import { HiOutlineFaceSmile } from "react-icons/hi2";
 import EmojiPicker from "emoji-picker-react";
-import OnClickOutside from "../../ui/OnClickOutside";
+import Modal from "../../ui/Modal";
 
 const CreatePostForm = () => {
   const fileInputRef = useRef(null);
   const [image, setImage] = useState(null);
   const [text, setText] = useState("");
-  const [isOpenEmoji, setIsOpenEmoji] = useState(false);
 
   const handleTextareaChange = (e) => {
     setText(e.target.value);
@@ -21,11 +20,6 @@ const CreatePostForm = () => {
   const handleFileClick = (e) => {
     e.preventDefault();
     fileInputRef.current.click();
-  };
-  const handleEmojiClick = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsOpenEmoji((isOpenEmoji) => !isOpenEmoji);
   };
   const handleFileChange = (e) => {
     e.preventDefault();
@@ -63,22 +57,21 @@ const CreatePostForm = () => {
               </button>
               <span className="text-gray-300">{image?.name}</span>
             </div>
-
-            <div className="relative flex items-center">
-              <button className="text-2xl text-brand hover:text-brand/90">
-                <HiOutlineFaceSmile onClick={handleEmojiClick} />
-              </button>
-              {isOpenEmoji && (
-                <div className="absolute left-0 top-full">
-                  <OnClickOutside clickedOutside={() => setIsOpenEmoji(false)}>
+              <Modal className={"mt-1"}>
+                <Modal.Button>
+                  <button className="text-2xl text-brand hover:text-brand/90">
+                    <HiOutlineFaceSmile />
+                  </button>
+                </Modal.Button>
+                <Modal.Body>
+                  <div className="absolute left-0 top-full">
                     <EmojiPicker
                       theme={"dark"}
                       onEmojiClick={(e) => setText(text + e.emoji)}
                     />
-                  </OnClickOutside>
-                </div>
-              )}
-            </div>
+                  </div>
+                </Modal.Body>
+              </Modal>
 
             <input
               type="file"
