@@ -11,11 +11,11 @@ const config = {
 };
 
 export const login = errorHandler(async(email, password) => {
-    const res = await axios.post(apiUrl + "login", { email, password }, config);
+    const res = await axios.post(apiUrl + "users/login", { email, password }, config);
     return res.data;
 });
 
 export const register = errorHandler(async({username, password, email}) => {
-    const res = await axios.post(apiUrl + "register", { username, password, email }, config);
+    const res = await axios.post(apiUrl + "users/register", { username, password, email }, config);
     return res.data;
 });
