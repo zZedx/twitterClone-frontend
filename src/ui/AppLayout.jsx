@@ -5,13 +5,17 @@ import SideBarRight from "./SideBarRight";
 const AppLayout = () => {
   return (
     <div className="h-screen">
-      <div className="hidden sm:block">
+      <aside className="fixed bottom-0 left-0 flex items-center w-full gap-2 px-2 py-4 bg-black border-t border-r sm:border-t-0 sm:w-24 sm:h-screen sm:top-0 sm:left-0 sm:flex-col sm:flex xl:pr-8 xl:w-1/4 2xl:pl-24 xl:pl-10 xl:items-start">
         <SideBarLeft />
-      </div>
+      </aside>
+
       <main className="ml-0 sm:ml-24 xl:ml-[25%] w-full sm:w-[calc(100%-6rem)] md:w-3/4 lg:w-[calc(66.66%-6rem)] xl:w-2/4 border-r min-h-full">
         <Outlet />
       </main>
-      <SideBarRight />
+      
+      <aside className="fixed top-0 right-0 hidden w-2/6 h-screen border-l xl:w-1/4 lg:block">
+        <SideBarRight />
+      </aside>
     </div>
   );
 };

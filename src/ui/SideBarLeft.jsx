@@ -16,9 +16,9 @@ import User from "../features/user/User";
 
 const SideBarLeft = () => {
   return (
-    <aside className="fixed top-0 left-0 flex flex-col items-center w-24 h-screen gap-2 px-2 py-4 border-r xl:pr-8 xl:w-1/4 2xl:pl-24 xl:pl-10 xl:items-start">
+    <>
       <Logo />
-
+      
       <StyledLink
         to="/home"
         text="Home"
@@ -54,7 +54,7 @@ const SideBarLeft = () => {
       </Button>
 
       <User />
-    </aside>
+    </>
   );
 };
 
