@@ -15,8 +15,11 @@ export const getAllPosts = errorHandler(async () => {
   return res.data;
 });
 
-export const createPost = errorHandler(async (body) => {
-  const res = await axios.post(apiUrl + "posts/createPost", {body} , config);
+export const createPost = errorHandler(async (body , image) => {
+  const newPost = new FormData();
+  newPost.append("image", image);
+  newPost.append("body", body);
+  const res = await axios.post(apiUrl + "posts/createPost", newPost , {withCredentials: true});
   return res.data;
 });
 

@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 const useCreatePost = () => {
   const queryClient = useQueryClient();
   const { mutate: createPost, status } = useMutation({
-    mutationFn: ({ body }) => createPostApi(body),
+    mutationFn: ({ body , image}) => createPostApi(body , image),
     onSuccess: () => {
       toast.success("Post created");
       queryClient.invalidateQueries({ queryKey: ["posts"] });

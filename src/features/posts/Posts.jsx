@@ -8,9 +8,11 @@ const Posts = () => {
 
   if (isLoading) return <Spinner />;
   if (isError) return <ServerError />;
+
+  const sortPosts = posts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
   return (
     <ul>
-      {posts.map((post) => (
+      {sortPosts.map((post) => (
         <Post key={post._id} post={post} />
       ))}
     </ul>

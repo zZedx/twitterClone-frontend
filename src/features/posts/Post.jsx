@@ -46,22 +46,22 @@ const Post = ({ post }) => {
         </div>
         <div className="mt-1 space-y-2">
           <p>{body}</p>
-          {!image && (
+          {image && (
             <img
               src={image}
-              className="w-full h-48 bg-yellow-200 rounded-2xl"
+              className="object-contain object-center w-full border max-h-[32rem] rounded-2xl"
             />
           )}
         </div>
-        <div className="flex gap-5 mt-4 font-semibold">
-          <button className="flex items-center gap-1 text-white/50 hover:text-blue-300">
+        <div className="flex gap-8 mt-4 font-semibold">
+          <button className="flex items-center gap-2 text-white/50 hover:text-blue-300">
             <span className="text-xl">
               <BiMessageAlt />
             </span>
             <span>{comments.length}</span>
           </button>
           <button
-            className={`flex items-center gap-1 hover:text-pink-500 ${
+            className={`flex items-center gap-2 hover:text-pink-500 ${
               liked ? "text-pink-500" : "text-white/50"
             }`}
             onClick={handleLike}

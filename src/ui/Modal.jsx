@@ -17,6 +17,7 @@ const Modal = ({ children , className}) => {
 const Button = ({ children }) => {
   const { setIsOpen } = useContext(Context);
   function handleClick(e) {
+    e.preventDefault();
     e.stopPropagation();
     setIsOpen((e) => !e);
   }

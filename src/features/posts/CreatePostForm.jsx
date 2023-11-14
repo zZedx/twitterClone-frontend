@@ -1,12 +1,13 @@
 import { useRef, useState } from "react";
 import { HiOutlineFaceSmile } from "react-icons/hi2";
+import { PiImageBold } from "react-icons/pi";
 
 import Avatar from "../../ui/Avatar";
 import Button from "../../ui/Button";
-import { PiImageBold } from "react-icons/pi";
 import EmojiPicker from "emoji-picker-react";
 import Modal from "../../ui/Modal";
 import useCreatePost from "./useCreatePost";
+import SpinnerMini from "../../ui/SpinnerMini";
 
 const CreatePostForm = () => {
   const fileInputRef = useRef(null);
@@ -35,9 +36,12 @@ const CreatePostForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createPost({body : text})
-    setText("");
-    setImage(null);
+    createPost({body : text , image} , {
+      onSettled : () => {
+        setText("");
+        setImage(null);
+      }
+    })
   };
 
   return (
@@ -90,9 +94,9 @@ const CreatePostForm = () => {
             type="submit"
             size="normal"
             style={{ padding: "0.5rem 1.5rem" }}
-            disabled={text.length === 0 && !image}
+            disabled={(text.length === 0 && !image) || status === "pending" }
           >
-            Post
+            {status === "pending" ? <SpinnerMini/> : "Post"}
           </Button>
         </div>
       </form>
