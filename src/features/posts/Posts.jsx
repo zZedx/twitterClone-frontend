@@ -1,13 +1,17 @@
-import usePosts from './usePosts'
+import Post from "./Post";
+import usePosts from "./usePosts";
 
 const Posts = () => {
-    const {posts , isError , isLoading} = usePosts()
+  const { posts, isError, isLoading } = usePosts();
 
-    if(isLoading) return <div>Loading...</div>
-    console.log(posts)
+  if (isLoading) return <div>Loading...</div>;
   return (
-    <div>Posts</div>
-  )
-}
+    <ul>
+      {posts.map((post) => (
+        <Post key={post._id} post={post} />
+      ))}
+    </ul>
+  );
+};
 
-export default Posts
+export default Posts;
