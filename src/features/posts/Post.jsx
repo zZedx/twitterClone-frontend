@@ -1,20 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import Avatar from "../../ui/Avatar";
 import { timeAgo } from "../../utils/date";
-import { HiHeart, HiOutlineHeart } from "react-icons/hi2";
 import { FaRegShareFromSquare } from "react-icons/fa6";
 import { BiMessageAlt } from "react-icons/bi";
 import toast from "react-hot-toast";
 import useLikePost from "./useLikePost";
-import useUser from "../user/useUser";
+import LikeButton from "../../ui/LikeBUtton";
 
 const Post = ({ post }) => {
   const { body, user, createdAt, image, likes, comments } = post;
-  const { user: currentUser } = useUser();
   const { likePost, status: likeStatus } = useLikePost();
   const navigate = useNavigate();
 
-  const liked = Boolean(likes.find((like) => like === currentUser._id));
 
   function toProfile() {
     navigate(`/profile/${user.username}`);
@@ -45,7 +42,9 @@ const Post = ({ post }) => {
           <span className="text-sm text-white/40">{timeAgo(createdAt)}</span>
         </div>
         <div className="mt-1 space-y-2">
-          <p>{body}</p>
+          
+          <p dangerouslySetInnerHTML={{ __html: body?.replace(/\n/g, "<br>") }} />
+          
           {image && (
             <img
               src={image}
@@ -54,29 +53,26 @@ const Post = ({ post }) => {
           )}
         </div>
         <div className="flex gap-8 mt-4 font-semibold">
+          
           <button className="flex items-center gap-2 text-white/50 hover:text-blue-300">
             <span className="text-xl">
               <BiMessageAlt />
             </span>
             <span>{comments.length}</span>
           </button>
-          <button
-            className={`flex items-center gap-2 hover:text-pink-500 ${
-              liked ? "text-pink-500" : "text-white/50"
-            }`}
+          
+          <LikeButton
             onClick={handleLike}
-            disabled={likeStatus === "pending"}
-          >
-            <span className="text-xl">
-              {liked ? <HiHeart /> : <HiOutlineHeart />}
-            </span>
-            <span>{likes.length}</span>
-          </button>
+            disabled={likeStatus === "loading"}
+            likes={likes}
+          />
+          
           <button className="ml-auto text-white/50 hover:text-green-500">
             <span className="text-xl">
               <FaRegShareFromSquare onClick={handleShare} />
             </span>
           </button>
+          
         </div>
       </div>
     </li>

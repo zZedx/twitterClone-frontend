@@ -14,7 +14,7 @@ const CreatePostForm = () => {
   const [image, setImage] = useState(null);
   const [text, setText] = useState("");
 
-  const {createPost , status} = useCreatePost()
+  const { createPost, status } = useCreatePost();
 
   const handleTextareaChange = (e) => {
     setText(e.target.value);
@@ -36,12 +36,15 @@ const CreatePostForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createPost({body : text , image} , {
-      onSettled : () => {
-        setText("");
-        setImage(null);
+    createPost(
+      { body: text, image },
+      {
+        onSettled: () => {
+          setText("");
+          setImage(null);
+        },
       }
-    })
+    );
   };
 
   return (
@@ -52,7 +55,7 @@ const CreatePostForm = () => {
           name="text"
           onChange={handleTextareaChange}
           placeholder="What is happening?!"
-          className="w-full overflow-y-hidden pb-4 text-xl bg-transparent outline-none min-h-[4rem] resize-none"
+          className="w-full overflow-y-hidden pb-4 text-xl bg-transparent outline-none min-h-[4rem] resize-none focus:border-b whitespace-pre-wrap"
           value={text}
         />
         <div className="flex items-center justify-between mt-2">
@@ -66,21 +69,21 @@ const CreatePostForm = () => {
               </button>
               <span className="text-gray-300">{image?.name}</span>
             </div>
-              <Modal className={"mt-1"}>
-                <Modal.Button>
-                  <button className="text-2xl text-brand hover:text-brand/90">
-                    <HiOutlineFaceSmile />
-                  </button>
-                </Modal.Button>
-                <Modal.Body>
-                  <div className="absolute left-0 top-full">
-                    <EmojiPicker
-                      theme={"dark"}
-                      onEmojiClick={(e) => setText(text + e.emoji)}
-                    />
-                  </div>
-                </Modal.Body>
-              </Modal>
+            <Modal className={"mt-1"}>
+              <Modal.Button>
+                <button className="text-2xl text-brand hover:text-brand/90">
+                  <HiOutlineFaceSmile />
+                </button>
+              </Modal.Button>
+              <Modal.Body>
+                <div className="absolute left-0 top-full">
+                  <EmojiPicker
+                    theme={"dark"}
+                    onEmojiClick={(e) => setText(text + e.emoji)}
+                  />
+                </div>
+              </Modal.Body>
+            </Modal>
 
             <input
               type="file"
@@ -94,9 +97,9 @@ const CreatePostForm = () => {
             type="submit"
             size="normal"
             style={{ padding: "0.5rem 1.5rem" }}
-            disabled={(text.length === 0 && !image) || status === "pending" }
+            disabled={(text.length === 0 && !image) || status === "pending"}
           >
-            {status === "pending" ? <SpinnerMini/> : "Post"}
+            {status === "pending" ? <SpinnerMini /> : "Post"}
           </Button>
         </div>
       </form>
