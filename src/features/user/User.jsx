@@ -14,8 +14,8 @@ const User = () => {
         <div className="flex items-center gap-4 px-4 py-2 rounded-full cursor-pointer hover:bg-secondary">
           <Avatar />
           <div className="flex-col hidden xl:flex">
-            <span className="ml-1 font-bold">{user.username}</span>
-            <span className="text-gray-500">@johndoe</span>
+            <span className="ml-1 font-bold">{user.displayName ? user.displayName : user.username}</span>
+            <span className="text-gray-500">@{user.username}</span>
           </div>
           <div className="hidden ml-auto text-3xl text-white xl:block">
             <HiOutlineEllipsisHorizontal />

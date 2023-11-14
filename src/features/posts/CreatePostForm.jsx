@@ -1,15 +1,19 @@
 import { useRef, useState } from "react";
+import { HiOutlineFaceSmile } from "react-icons/hi2";
+
 import Avatar from "../../ui/Avatar";
 import Button from "../../ui/Button";
 import { PiImageBold } from "react-icons/pi";
-import { HiOutlineFaceSmile } from "react-icons/hi2";
 import EmojiPicker from "emoji-picker-react";
 import Modal from "../../ui/Modal";
+import useCreatePost from "./useCreatePost";
 
 const CreatePostForm = () => {
   const fileInputRef = useRef(null);
   const [image, setImage] = useState(null);
   const [text, setText] = useState("");
+
+  const {createPost , status} = useCreatePost()
 
   const handleTextareaChange = (e) => {
     setText(e.target.value);
@@ -31,6 +35,7 @@ const CreatePostForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    createPost({body : text})
     setText("");
     setImage(null);
   };
