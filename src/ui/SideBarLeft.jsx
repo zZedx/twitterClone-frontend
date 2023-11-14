@@ -48,7 +48,7 @@ const SideBarLeft = () => {
         activeStyle={"font-bold"}
       />
 
-      <Button width="full">
+      <Button addClass="w-fit xl:w-full">
         <span className="hidden xl:block">Tweet</span>
         <FaFeatherAlt className="block xl:hidden" />
       </Button>

@@ -4,6 +4,7 @@ const Button = ({
   width = "fit",
   style = {},
   disabled = false,
+  addClass = "",
 }) => {
   let buttonSizeClass = "";
 
@@ -26,7 +27,7 @@ const Button = ({
   return (
     <button
       style={style}
-      className={`font-bold tracking-wide text-white transition-all rounded-full bg-brand  ${buttonSizeClass} ${buttonWidthClass} ${
+      className={`${addClass} font-bold tracking-wide text-white transition-all rounded-full bg-brand  ${buttonSizeClass} ${buttonWidthClass} ${
         disabled ? "opacity-50 cursor-not-allowed " : "hover:bg-brand/90"
       }}`}
       disabled={disabled}

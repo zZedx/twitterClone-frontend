@@ -9,7 +9,7 @@ const User = () => {
   const {logout , status} = useLogout()
   const {user} = useUser()
   return (
-    <Modal className={"mt-auto mb-2 relative xl:w-full"}>
+    <Modal className={"mt-auto mb-2 relative xl:w-full hidden sm:block"}>
       <Modal.Button>
         <div className="flex items-center gap-4 px-4 py-2 rounded-full cursor-pointer hover:bg-secondary">
           <Avatar />

@@ -4,12 +4,14 @@ import CreatePostForm from "../features/posts/CreatePostForm";
 import Posts from "../features/posts/Posts";
 
 const Home = () => {
-  const [filter , setFilter] = useState("for-you")
+  const [filter, setFilter] = useState("for-you");
   return (
-    <div>
-      <Header filter={filter} setFilter={setFilter}/>
-      <CreatePostForm/>
-      <Posts/>
+    <div className="w-full">
+      <Header filter={filter} setFilter={setFilter} />
+      <div className="pt-16">
+        <CreatePostForm />
+      </div>
+      <Posts />
     </div>
   );
 };
