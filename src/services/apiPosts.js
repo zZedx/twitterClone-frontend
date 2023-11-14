@@ -19,3 +19,8 @@ export const createPost = errorHandler(async (body) => {
   const res = await axios.post(apiUrl + "posts/createPost", {body} , config);
   return res.data;
 });
+
+export const likePost = errorHandler(async (id) => {
+  const res = await axios.post(apiUrl + `posts/likePost/${id}` , {} , config);
+  return res.data;
+});

@@ -1,36 +1,46 @@
 import { useNavigate } from "react-router-dom";
 import Avatar from "../../ui/Avatar";
 import { timeAgo } from "../../utils/date";
-import { HiOutlineHeart } from "react-icons/hi2";
+import { HiHeart, HiOutlineHeart } from "react-icons/hi2";
 import { FaRegShareFromSquare } from "react-icons/fa6";
 import { BiMessageAlt } from "react-icons/bi";
 import toast from "react-hot-toast";
+import useLikePost from "./useLikePost";
+import useUser from "../user/useUser";
 
 const Post = ({ post }) => {
   const { body, user, createdAt, image, likes, comments } = post;
+  const { user: currentUser } = useUser();
+  const { likePost, status: likeStatus } = useLikePost();
   const navigate = useNavigate();
 
-  function toProfile(){
-    navigate(`/profile/${user.username}`)
+  const liked = Boolean(likes.find((like) => like === currentUser._id));
+
+  function toProfile() {
+    navigate(`/profile/${user.username}`);
   }
-  function handleShare(e){
-    e.stopPropagation()
-    const urlToCopy = `${window.location.origin}/profile/${user.username}`
-    navigator.clipboard.writeText(urlToCopy)
-    toast.success("Post Url Copied to clipboard")
+  function handleShare(e) {
+    e.stopPropagation();
+    const urlToCopy = `${window.location.origin}/profile/${user.username}`;
+    navigator.clipboard.writeText(urlToCopy);
+    toast.success("Post Url Copied to clipboard");
+  }
+
+  function handleLike() {
+    likePost(post._id);
   }
 
   return (
     <li className="flex gap-4 px-4 py-4 border cursor-pointer">
-      <Avatar src={user.avatar} onClick={toProfile}/>
+      <Avatar src={user.avatar} onClick={toProfile} />
       <div className="w-full">
-        <div
-          className="flex items-baseline gap-1"
-        >
+        <div className="flex items-baseline gap-1">
           <span className="font-semibold hover:underline" onClick={toProfile}>
             {user.displayName}
           </span>
-          <span className="text-white/40" onClick={toProfile}>@{user.username}</span>
+          <span className="text-white/40" onClick={toProfile}>
+            @{user.username}
+          </span>
           <span className="w-1 h-1 mt-auto mb-auto rounded-full bg-white/40"></span>
           <span className="text-sm text-white/40">{timeAgo(createdAt)}</span>
         </div>
@@ -50,15 +60,21 @@ const Post = ({ post }) => {
             </span>
             <span>{comments.length}</span>
           </button>
-          <button className="flex items-center gap-1 text-white/50 hover:text-pink-500">
+          <button
+            className={`flex items-center gap-1 hover:text-pink-500 ${
+              liked ? "text-pink-500" : "text-white/50"
+            }`}
+            onClick={handleLike}
+            disabled={likeStatus === "pending"}
+          >
             <span className="text-xl">
-              <HiOutlineHeart />
+              {liked ? <HiHeart /> : <HiOutlineHeart />}
             </span>
             <span>{likes.length}</span>
           </button>
           <button className="ml-auto text-white/50 hover:text-green-500">
             <span className="text-xl">
-              <FaRegShareFromSquare onClick={handleShare}/>
+              <FaRegShareFromSquare onClick={handleShare} />
             </span>
           </button>
         </div>
