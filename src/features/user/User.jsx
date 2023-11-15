@@ -3,11 +3,11 @@ import Modal from "../../ui/Modal";
 import ModalList from "../../ui/ModalList";
 import { HiOutlineEllipsisHorizontal } from "react-icons/hi2";
 import useLogout from "../auth/useLogout";
-import useUser from "./useUser";
+import { useCurrentUser } from "../../ui/ProtectedRoutes";
 
 const User = () => {
   const {logout , status} = useLogout()
-  const {user} = useUser()
+  const {user} = useCurrentUser()
   return (
     <Modal className={"mt-auto mb-2 relative xl:w-full hidden sm:block"}>
       <Modal.Button>

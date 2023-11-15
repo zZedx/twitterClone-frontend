@@ -13,8 +13,10 @@ import { FaFeatherAlt } from "react-icons/fa";
 import Logo from "./Logo";
 import Button from "./Button";
 import User from "../features/user/User";
+import { useCurrentUser } from "./ProtectedRoutes";
 
 const SideBarLeft = () => {
+  const {user} = useCurrentUser();
   return (
     <>
       <Logo />
@@ -41,7 +43,7 @@ const SideBarLeft = () => {
         activeStyle={"font-bold"}
       />
       <StyledLink
-        to="/profile"
+        to={`/${user?.username}`}
         text="Profile"
         icon={<HiOutlineUser />}
         activeIcon={<HiUser />}

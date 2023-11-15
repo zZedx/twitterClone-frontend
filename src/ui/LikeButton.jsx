@@ -1,8 +1,8 @@
 import { HiHeart, HiOutlineHeart } from "react-icons/hi2";
-import useUser from "../features/user/useUser";
+import { useCurrentUser } from "./ProtectedRoutes";
 
 const LikeButton = ({onClick , disabled , likes}) => {
-  const { user: currentUser } = useUser();
+  const { user: currentUser } = useCurrentUser();
   const liked = Boolean(likes.find((like) => like === currentUser._id));
   
   return (

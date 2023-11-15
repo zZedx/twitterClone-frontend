@@ -1,0 +1,77 @@
+import { useParams } from "react-router-dom";
+import useUserProfile from "./useUserProfile";
+import Spinner from "../../ui/Spinner";
+import ServerError from "../../ui/ServerError";
+import Header from "../../ui/Header";
+import BackButton from "../../ui/BackButton";
+import { HiCalendar, HiOutlineEnvelope } from "react-icons/hi2";
+
+const Profile = () => {
+  const { username } = useParams();
+  const { user, isLoading, isError } = useUserProfile(username);
+
+  if (isLoading) return <Spinner />;
+  if (isError) return <ServerError />;
+
+  const profile = user;
+
+  return (
+    <>
+      <Header addClass="gap-4 px-4 py-3">
+        <BackButton />
+        <div>
+          <h1 className="text-xl font-bold">{profile.displayName}</h1>
+          <span>{profile.posts?.length()}</span>
+        </div>
+      </Header>
+
+      <div className="relative mt-16 h-[17.5rem]">
+        <img
+          src={profile.cover}
+          alt=""
+          className="object-contain object-center w-full bg-gray-500 border-none h-52"
+        />
+        <img
+          src={profile.avatar}
+          alt=""
+          className="absolute object-cover object-center w-36 h-36 border-[3px] border-black rounded-full bottom-0 left-4"
+        />
+        <div className="flex justify-end w-full gap-2 px-4 py-3">
+          <button className="flex items-center justify-center w-10 h-10 text-2xl bg-transparent border rounded-full hover:bg-secondary">
+            <HiOutlineEnvelope />
+          </button>
+          <button className="px-4 py-2 font-semibold text-black transition-all bg-white border rounded-full hover:opacity-90">
+            Follow
+          </button>
+        </div>
+        <div className="px-6 py-4">
+          <h1 className="text-2xl font-bold">{profile.displayName}</h1>
+          <span className="-m-1 text-white/40">@{profile.username}</span>
+          <p className="mt-2">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae
+            vero soluta ex consequuntur saepe, voluptatum expedita est maiores
+            cumque, architecto pariatur nostrum quia a rerum illum autem natus
+            libero corrupti?
+          </p>
+
+          <span className="flex items-center gap-1 mt-2 text-white/40">
+            <HiCalendar /> Joined Mar 14
+          </span>
+          
+          <div className="flex gap-6 mt-2">
+            <div className="flex gap-1">
+              <span className="font-semibold">28</span>
+              <span className="text-white/40">Following</span>
+            </div>
+            <div className="flex gap-1">
+              <span className="font-semibold">4000</span>
+              <span className="text-white/40">Followers</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Profile;

@@ -3,7 +3,7 @@ import ServerError from "../../ui/ServerError";
 import Post from "./Post";
 import usePosts from "./usePosts";
 
-const Posts = () => {
+const Posts = ({usePosts}) => {
   const { posts, isError, isLoading } = usePosts();
 
   if (isLoading) return <Spinner />;

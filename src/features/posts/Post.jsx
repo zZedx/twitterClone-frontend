@@ -8,13 +8,14 @@ import useLikePost from "./useLikePost";
 import LikeButton from "../../ui/LikeBUtton";
 
 const Post = ({ post }) => {
-  const { body, user, createdAt, image, likes, comments } = post;
-  const { likePost, status: likeStatus } = useLikePost();
   const navigate = useNavigate();
 
+  const { body, user, createdAt, image, likes, comments } = post;
+  const { likePost, status: likeStatus } = useLikePost();
 
-  function toProfile() {
-    navigate(`/profile/${user.username}`);
+  function toProfile(e) {
+    e.stopPropagation();
+    navigate(`/${user.username}`);
   }
   function handleShare(e) {
     e.stopPropagation();
@@ -23,12 +24,18 @@ const Post = ({ post }) => {
     toast.success("Post Url Copied to clipboard");
   }
 
-  function handleLike() {
+  function handleLike(e) {
+    e.stopPropagation();
     likePost(post._id);
   }
 
   return (
-    <li className="flex gap-4 px-4 py-4 border cursor-pointer">
+    <li
+      className="flex gap-4 px-4 py-4 border cursor-pointer"
+      onClick={() => {
+        navigate(`/${user.username}/post/${post._id}`);
+      }}
+    >
       <Avatar src={user.avatar} onClick={toProfile} />
       <div className="w-full">
         <div className="flex items-baseline gap-1">
@@ -42,9 +49,10 @@ const Post = ({ post }) => {
           <span className="text-sm text-white/40">{timeAgo(createdAt)}</span>
         </div>
         <div className="mt-1 space-y-2">
-          
-          <p dangerouslySetInnerHTML={{ __html: body?.replace(/\n/g, "<br>") }} />
-          
+          <p
+            dangerouslySetInnerHTML={{ __html: body?.replace(/\n/g, "<br>") }}
+          />
+
           {image && (
             <img
               src={image}
@@ -53,26 +61,24 @@ const Post = ({ post }) => {
           )}
         </div>
         <div className="flex gap-8 mt-4 font-semibold">
-          
           <button className="flex items-center gap-2 text-white/50 hover:text-blue-300">
             <span className="text-xl">
               <BiMessageAlt />
             </span>
             <span>{comments.length}</span>
           </button>
-          
+
           <LikeButton
             onClick={handleLike}
             disabled={likeStatus === "loading"}
             likes={likes}
           />
-          
+
           <button className="ml-auto text-white/50 hover:text-green-500">
             <span className="text-xl">
               <FaRegShareFromSquare onClick={handleShare} />
             </span>
           </button>
-          
         </div>
       </div>
     </li>
