@@ -7,11 +7,13 @@ import toast from "react-hot-toast";
 import useLikePost from "./useLikePost";
 import LikeButton from "../../ui/LikeBUtton";
 
-const Post = ({ post }) => {
+const Post = ({ post , profileUser}) => {
   const navigate = useNavigate();
 
-  const { body, user, createdAt, image, likes, comments } = post;
+  const { body, createdAt, image, likes, comments } = post;
   const { likePost, status: likeStatus } = useLikePost();
+
+  let user = profileUser || post.user;
 
   function toProfile(e) {
     e.stopPropagation();
@@ -19,7 +21,7 @@ const Post = ({ post }) => {
   }
   function handleShare(e) {
     e.stopPropagation();
-    const urlToCopy = `${window.location.origin}/profile/${user.username}`;
+    const urlToCopy = `${window.location.origin}/${user.username}/post/${post._id}`;
     navigator.clipboard.writeText(urlToCopy);
     toast.success("Post Url Copied to clipboard");
   }

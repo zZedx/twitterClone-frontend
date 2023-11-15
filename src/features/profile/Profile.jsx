@@ -5,23 +5,35 @@ import ServerError from "../../ui/ServerError";
 import Header from "../../ui/Header";
 import BackButton from "../../ui/BackButton";
 import { HiCalendar, HiOutlineEnvelope } from "react-icons/hi2";
+import { useCurrentUser } from "../../ui/ProtectedRoutes";
+import Posts from "../posts/Posts";
+import { useState } from "react";
 
 const Profile = () => {
   const { username } = useParams();
+  const { user: currentUser } = useCurrentUser();
   const { user, isLoading, isError } = useUserProfile(username);
 
   if (isLoading) return <Spinner />;
   if (isError) return <ServerError />;
 
+  let isAdmin = false;
+  if (currentUser.username === username) {
+    isAdmin = true;
+  } else {
+    isAdmin = false;
+  }
   const profile = user;
-
+  
   return (
     <>
       <Header addClass="gap-4 px-4 py-3">
         <BackButton />
-        <div>
-          <h1 className="text-xl font-bold">{profile.displayName}</h1>
-          <span>{profile.posts?.length()}</span>
+        <div className="flex flex-col">
+          <span className="text-xl font-bold">{profile.displayName}</span>
+          <span className="text-sm text-white/50">
+            {profile?.posts.length} posts
+          </span>
         </div>
       </Header>
 
@@ -57,18 +69,19 @@ const Profile = () => {
           <span className="flex items-center gap-1 mt-2 text-white/40">
             <HiCalendar /> Joined Mar 14
           </span>
-          
-          <div className="flex gap-6 mt-2">
+
+          <div className="flex gap-6 mt-2 mb-3">
             <div className="flex gap-1">
-              <span className="font-semibold">28</span>
+              <span className="font-semibold">{profile.following.length}</span>
               <span className="text-white/40">Following</span>
             </div>
             <div className="flex gap-1">
-              <span className="font-semibold">4000</span>
+              <span className="font-semibold">{profile.followers.length}</span>
               <span className="text-white/40">Followers</span>
             </div>
           </div>
         </div>
+        <Posts postsObj={{ posts: profile.posts }} profileUser={user}/>
       </div>
     </>
   );

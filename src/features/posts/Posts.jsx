@@ -1,10 +1,9 @@
 import Spinner from "../../ui/Spinner";
 import ServerError from "../../ui/ServerError";
 import Post from "./Post";
-import usePosts from "./usePosts";
 
-const Posts = ({usePosts}) => {
-  const { posts, isError, isLoading } = usePosts();
+const Posts = ({usePosts , postsObj , profileUser}) => {
+  const { posts, isError = false , isLoading = false } = usePosts?.() || postsObj;
 
   if (isLoading) return <Spinner />;
   if (isError) return <ServerError />;
@@ -13,7 +12,7 @@ const Posts = ({usePosts}) => {
   return (
     <ul>
       {sortPosts.map((post) => (
-        <Post key={post._id} post={post} />
+        <Post key={post._id} post={post} profileUser={profileUser}/>
       ))}
     </ul>
   );
