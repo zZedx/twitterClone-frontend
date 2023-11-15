@@ -9,7 +9,7 @@ import Modal from "../../ui/Modal";
 import useCreatePost from "./useCreatePost";
 import SpinnerMini from "../../ui/SpinnerMini";
 
-const CreatePostForm = () => {
+const CreatePostForm = ({onCloseFullModal}) => {
   const fileInputRef = useRef(null);
   const [image, setImage] = useState(null);
   const [text, setText] = useState("");
@@ -40,6 +40,7 @@ const CreatePostForm = () => {
       { body: text, image },
       {
         onSettled: () => {
+          onCloseFullModal();
           setText("");
           setImage(null);
         },
@@ -48,7 +49,7 @@ const CreatePostForm = () => {
   };
 
   return (
-    <div className="flex items-start w-full gap-4 p-4 border-b">
+    <div className="flex items-start w-full gap-4 p-4 border-b min-w-[30rem]">
       <Avatar />
       <form className="w-full" onSubmit={handleSubmit}>
         <textarea

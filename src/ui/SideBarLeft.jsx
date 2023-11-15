@@ -14,13 +14,15 @@ import Logo from "./Logo";
 import Button from "./Button";
 import User from "../features/user/User";
 import { useCurrentUser } from "./ProtectedRoutes";
+import FullModal from "./FullModal";
+import CreatePostForm from "../features/posts/CreatePostForm";
 
 const SideBarLeft = () => {
-  const {user} = useCurrentUser();
+  const { user } = useCurrentUser();
   return (
     <>
       <Logo />
-      
+
       <StyledLink
         to="/home"
         text="Home"
@@ -49,11 +51,18 @@ const SideBarLeft = () => {
         activeIcon={<HiUser />}
         activeStyle={"font-bold"}
       />
-
-      <Button addClass="w-fit xl:w-full mt-2">
-        <span className="hidden xl:block">Tweet</span>
-        <FaFeatherAlt className="block xl:hidden" />
-      </Button>
+      
+      <FullModal>
+        <FullModal.Button opens={"comment"}>
+          <Button addClass="w-fit xl:w-full mt-2">
+            <span className="hidden xl:block">Tweet</span>
+            <FaFeatherAlt className="block xl:hidden" />
+          </Button>
+        </FullModal.Button>
+        <FullModal.Window name={"comment"}>
+          <CreatePostForm />
+        </FullModal.Window>
+      </FullModal>
 
       <User />
     </>

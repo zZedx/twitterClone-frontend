@@ -5,6 +5,7 @@ const Button = ({
   style = {},
   disabled = false,
   addClass = "",
+  onClick,
 }) => {
   let buttonSizeClass = "";
 
@@ -31,6 +32,7 @@ const Button = ({
         disabled ? "opacity-50 cursor-not-allowed " : "hover:bg-brand/90"
       }}`}
       disabled={disabled}
+      onClick={onClick}
     >
       {children}
     </button>
