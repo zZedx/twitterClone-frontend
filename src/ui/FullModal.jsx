@@ -42,12 +42,12 @@ function Window({ children, name }) {
         className="fixed top-0 left-0 w-full h-full bg-white bg-opacity-20"
         onClick={close}
       ></div>
-      <div className="fixed p-8 transform -translate-x-1/2 -translate-y-1/2 bg-black rounded-lg shadow-lg top-1/2 left-1/2">
+      <div className="fixed flex flex-col w-full transform -translate-x-1/2 bg-black shadow-lg rounded-2xl top-20 left-1/2 max-w-[42rem]">
         <button
-          className="absolute p-1 transition duration-300 bg-gray-300 rounded-full top-4 right-4 hover:bg-gray-400"
+          className="p-1 mt-3 ml-auto mr-4 transition duration-300 rounded-full hover:bg-gray-800"
           onClick={close}
         >
-          <HiX className="w-6 h-6 text-gray-600" />
+          <HiX className="w-5 h-5"/>
         </button>
         {cloneElement(children, { onCloseFullModal: close })}
       </div>

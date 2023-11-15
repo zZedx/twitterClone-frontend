@@ -31,7 +31,7 @@ const PostDetails = () => {
         <BackButton />
         <span className="text-xl font-bold">Post</span>
       </Header>
-      <div className="p-4 mt-16">
+      <div className="p-4 pt-20">
         <div className="flex items-center gap-3">
           <Avatar src={user.avatar} onClick={toProfile} />
           <div className="flex flex-col gap-1">

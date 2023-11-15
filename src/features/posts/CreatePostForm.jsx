@@ -49,7 +49,7 @@ const CreatePostForm = ({onCloseFullModal}) => {
   };
 
   return (
-    <div className="flex items-start w-full gap-4 p-4 border-b min-w-[30rem]">
+    <div className={`flex items-start gap-4 p-4 w-full ${onCloseFullModal ? "" : "border-b"}`}>
       <Avatar />
       <form className="w-full" onSubmit={handleSubmit}>
         <textarea

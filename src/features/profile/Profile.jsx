@@ -37,11 +37,11 @@ const Profile = () => {
         </div>
       </Header>
 
-      <div className="relative mt-16 h-[17.5rem]">
+      <div className="relative mt-16">
         <img
           src={profile.cover}
           alt=""
-          className="object-contain object-center w-full bg-gray-500 border-none h-52"
+          className="object-contain object-center w-full bg-gray-500 border-none h-44"
         />
         <img
           src={profile.avatar}
@@ -60,33 +60,33 @@ const Profile = () => {
             </>
           )}
         </div>
-        <div className="px-6 py-4">
-          <h1 className="text-2xl font-bold">{profile.displayName}</h1>
-          <span className="-m-1 text-white/40">@{profile.username}</span>
-          <p className="mt-2">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae
-            vero soluta ex consequuntur saepe, voluptatum expedita est maiores
-            cumque, architecto pariatur nostrum quia a rerum illum autem natus
-            libero corrupti?
-          </p>
+      </div>
+      <div className="px-5 py-2">
+        <h1 className="text-2xl font-bold">{profile.displayName}</h1>
+        <span className="-m-1 text-white/40">@{profile.username}</span>
+        <p className="mt-2">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae
+          vero soluta ex consequuntur saepe, voluptatum expedita est maiores
+          cumque, architecto pariatur nostrum quia a rerum illum autem natus
+          libero corrupti?
+        </p>
 
-          <span className="flex items-center gap-1 mt-2 text-white/40">
-            <HiCalendar /> Joined Mar 14
-          </span>
+        <span className="flex items-center gap-1 mt-2 text-white/40">
+          <HiCalendar /> Joined Mar 14
+        </span>
 
-          <div className="flex gap-6 mt-2 mb-3">
-            <div className="flex gap-1">
-              <span className="font-semibold">{profile.following.length}</span>
-              <span className="text-white/40">Following</span>
-            </div>
-            <div className="flex gap-1">
-              <span className="font-semibold">{profile.followers.length}</span>
-              <span className="text-white/40">Followers</span>
-            </div>
+        <div className="flex gap-6 mt-2 mb-3">
+          <div className="flex gap-1">
+            <span className="font-semibold">{profile.following.length}</span>
+            <span className="text-white/40">Following</span>
+          </div>
+          <div className="flex gap-1">
+            <span className="font-semibold">{profile.followers.length}</span>
+            <span className="text-white/40">Followers</span>
           </div>
         </div>
-        <Posts postsObj={{ posts: profile.posts }} profileUser={user} />
       </div>
+      <Posts postsObj={{ posts: profile.posts }} profileUser={user} />
     </>
   );
 };
