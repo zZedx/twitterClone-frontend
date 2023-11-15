@@ -27,3 +27,8 @@ export const likePost = errorHandler(async (id) => {
   const res = await axios.post(apiUrl + `posts/likePost/${id}` , {} , config);
   return res.data;
 });
+
+export const getPost = errorHandler(async (id) => {
+  const res = await axios.get(apiUrl + `posts/${id}`);
+  return res.data;
+}); 

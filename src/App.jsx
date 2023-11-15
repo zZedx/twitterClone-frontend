@@ -13,6 +13,7 @@ import Register from "./pages/Register";
 import { Toaster } from "react-hot-toast";
 import ProtectedRoutes from "./ui/ProtectedRoutes";
 import Profile from "./features/profile/Profile";
+import PostDetails from "./features/posts/PostDetails";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
         path: "/:username",
         element: <Profile/>,
       },
+      {
+        path : "/:username/post/:postId",
+        element : <PostDetails/>
+      }
     ],
   },
   {

@@ -1,6 +1,6 @@
 const ModalList = ({ children }) => {
   return (
-    <div className="z-10 flex flex-col gap-2 py-2 rounded-md w-fit shadow-shadowMain">
+    <div className="z-10 flex flex-col gap-2 bg-black border-2 rounded-md w-fit shadow-shadowMain">
       {children}
     </div>
   );

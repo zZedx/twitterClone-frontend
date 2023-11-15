@@ -26,3 +26,11 @@ export function timeAgo(createdAt) {
     return `${seconds}s`;
   }
 }
+
+export function formatDate (date) {
+  const d = new Date(date)
+  const time = d.toLocaleTimeString()
+  const options = { month: 'short', day: 'numeric', year: 'numeric' }
+  const formattedDate = d.toLocaleDateString(undefined, options)
+  return `${time} ${formattedDate}`
+}

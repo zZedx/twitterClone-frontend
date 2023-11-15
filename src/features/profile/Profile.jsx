@@ -7,7 +7,6 @@ import BackButton from "../../ui/BackButton";
 import { HiCalendar, HiOutlineEnvelope } from "react-icons/hi2";
 import { useCurrentUser } from "../../ui/ProtectedRoutes";
 import Posts from "../posts/Posts";
-import { useState } from "react";
 
 const Profile = () => {
   const { username } = useParams();
@@ -48,7 +47,7 @@ const Profile = () => {
           alt=""
           className="absolute object-cover object-center w-36 h-36 border-[3px] border-black rounded-full bottom-0 left-4"
         />
-        <div className="flex justify-end w-full gap-2 px-4 py-3">
+        <div className="flex justify-end w-full gap-3 px-4 py-3">
           <button className="flex items-center justify-center w-10 h-10 text-2xl bg-transparent border rounded-full hover:bg-secondary">
             <HiOutlineEnvelope />
           </button>
