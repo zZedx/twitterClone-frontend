@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import useUserProfile from "./useUserProfile";
 import Spinner from "../../ui/Spinner";
 import ServerError from "../../ui/ServerError";
-import Header from "../../ui/Header";
+import Header, { Filter } from "../../ui/Header";
 import BackButton from "../../ui/BackButton";
 import { HiCalendar, HiOutlineEnvelope } from "react-icons/hi2";
 import { useCurrentUser } from "../../ui/ProtectedRoutes";
@@ -86,6 +86,9 @@ const Profile = () => {
           </div>
         </div>
       </div>
+      <ul className="flex h-12">
+      <Filter name="Posts" active={true} />
+      </ul>
       <Posts postsObj={{ posts: profile.posts }} profileUser={user} />
     </>
   );
