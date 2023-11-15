@@ -7,6 +7,7 @@ import BackButton from "../../ui/BackButton";
 import { HiCalendar, HiOutlineEnvelope } from "react-icons/hi2";
 import { useCurrentUser } from "../../ui/ProtectedRoutes";
 import Posts from "../posts/Posts";
+import ProfileButton from "../../ui/ProfileButton";
 
 const Profile = () => {
   const { username } = useParams();
@@ -23,7 +24,7 @@ const Profile = () => {
     isAdmin = false;
   }
   const profile = user;
-  
+
   return (
     <>
       <Header addClass="gap-4 px-4 py-3">
@@ -48,12 +49,16 @@ const Profile = () => {
           className="absolute object-cover object-center w-36 h-36 border-[3px] border-black rounded-full bottom-0 left-4"
         />
         <div className="flex justify-end w-full gap-3 px-4 py-3">
-          <button className="flex items-center justify-center w-10 h-10 text-2xl bg-transparent border rounded-full hover:bg-secondary">
-            <HiOutlineEnvelope />
-          </button>
-          <button className="px-4 py-2 font-semibold text-black transition-all bg-white border rounded-full hover:opacity-90">
-            Follow
-          </button>
+          {isAdmin ? (
+            <ProfileButton type={"outline"}>Edit Profile</ProfileButton>
+          ) : (
+            <>
+              <button className="flex items-center justify-center w-10 h-10 text-2xl bg-transparent border rounded-full hover:bg-secondary">
+                <HiOutlineEnvelope />
+              </button>
+              <ProfileButton>Follow</ProfileButton>
+            </>
+          )}
         </div>
         <div className="px-6 py-4">
           <h1 className="text-2xl font-bold">{profile.displayName}</h1>
@@ -80,7 +85,7 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <Posts postsObj={{ posts: profile.posts }} profileUser={user}/>
+        <Posts postsObj={{ posts: profile.posts }} profileUser={user} />
       </div>
     </>
   );

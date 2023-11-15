@@ -18,7 +18,7 @@ const Post = ({ post, profileUser }) => {
 
   return (
     <li
-      className="flex gap-4 px-4 py-4 border cursor-pointer"
+      className="flex gap-4 px-4 py-3 border cursor-pointer"
       onClick={() => {
         navigate(`/${user.username}/post/${post._id}`);
       }}

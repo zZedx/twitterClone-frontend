@@ -5,7 +5,7 @@ const BackButton = () => {
   const navigate = useNavigate();
   return (
     <button
-          className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-secondary"
+          className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-white/20"
           onClick={() => navigate(-1)}
         >
           <HiArrowLeft className="text-2xl" />
