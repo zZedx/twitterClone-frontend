@@ -67,7 +67,7 @@ const Profile = () => {
         <p className="mt-2">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae
           vero soluta ex consequuntur saepe, voluptatum expedita est maiores
-          cumque, architecto pariatur nostrum quia a rerum illum autem natus
+          cumque, architect pariatur nostrum quia a rerum illum autem natus
           libero corrupti?
         </p>
 
