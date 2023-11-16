@@ -20,7 +20,7 @@ const Post = ({ post, profileUser, isComment = false }) => {
     <li
       className="flex gap-4 px-4 py-3 border cursor-pointer"
       onClick={() => {
-        !isComment && navigate(`/${user.username}/post/${post._id}`);
+        !isComment && navigate(`/post/${post._id}`);
       }}
     >
       <Avatar src={user.avatar} onClick={toProfile} />

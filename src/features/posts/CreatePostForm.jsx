@@ -10,7 +10,6 @@ import useCreatePost from "./useCreatePost";
 import SpinnerMini from "../../ui/SpinnerMini";
 import useComment from "./useComment";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useCurrentUser } from "../../ui/ProtectedRoutes";
 
 const CreatePostForm = ({ onCloseFullModal, post = true, postId }) => {
   const navigate = useNavigate();
@@ -21,7 +20,6 @@ const CreatePostForm = ({ onCloseFullModal, post = true, postId }) => {
 
   const { createPost, status: postStatus } = useCreatePost();
   const { createComment, status: replyStatus } = useComment();
-  const { user: currentUser } = useCurrentUser();
 
   const handleTextareaChange = (e) => {
     setText(e.target.value);
@@ -67,9 +65,9 @@ const CreatePostForm = ({ onCloseFullModal, post = true, postId }) => {
             setImage(null);
           },
           onSuccess: () => {
-            const path = `/${currentUser.username}/post/${postId}`;
+            const path = `/post/${postId}`;
             if (location.pathname !== path) {
-              navigate(`/${currentUser.username}/post/${postId}`);
+              navigate(`/post/${postId}`);
             }
           },
         }
