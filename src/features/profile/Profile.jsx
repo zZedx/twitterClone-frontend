@@ -15,7 +15,7 @@ const Profile = () => {
   const { user, isLoading, isError } = useUserProfile(username);
 
   if (isLoading) return <Spinner />;
-  if (isError) return <ServerError />;
+  if (isError) return <ServerError>Profile not found</ServerError>;
 
   let isAdmin = false;
   if (currentUser.username === username) {

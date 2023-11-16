@@ -6,7 +6,7 @@ const Posts = ({usePosts , postsObj , profileUser ,isComment}) => {
   const { posts, isError = false , isLoading = false } = usePosts?.() || postsObj;
 
   if (isLoading) return <Spinner />;
-  if (isError) return <ServerError />;
+  if (isError) return <ServerError>Cound not fetch posts</ServerError>;
 
   const sortPosts = posts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
   return (

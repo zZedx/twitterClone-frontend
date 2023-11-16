@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import useUser from "../features/user/useUser";
 
 import { createContext, useContext } from "react";
+import Spinner from "./Spinner";
 
 const UserContext = createContext();
 
@@ -11,7 +12,7 @@ const ProtectedRoutes = ({ children }) => {
 
   if (!isLoading && !user) navigate("/login", { replace: true });
 
-  if (isLoading) return null;
+  if (isLoading) return <Spinner/>;
   return (
     <UserContext.Provider value={{ user }}>{children}</UserContext.Provider>
   );

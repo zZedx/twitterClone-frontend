@@ -17,7 +17,7 @@ const PostDetails = () => {
   const navigate = useNavigate();
 
   if (isLoading) return <Spinner />;
-  if (isError) return <ServerError />;
+  if (isError) return <ServerError>No Post Found</ServerError>;
 
   const { user, body, createdAt, likes, comments, image } = post;
 
