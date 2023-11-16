@@ -81,12 +81,12 @@ function StyledLink({ activeIcon, icon, activeStyle, text, to }) {
       {({ isActive }) =>
         isActive ? (
           <>
-            <div className="text-3xl">{activeIcon}</div>
+            <div className="text-xl sm:text-3xl">{activeIcon}</div>
             <span className="hidden xl:block">{text}</span>
           </>
         ) : (
           <>
-            <div className="text-3xl">{icon}</div>
+            <div className="text-xl sm:text-3xl">{icon}</div>
             <span className="hidden xl:block">{text}</span>
           </>
         )

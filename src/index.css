@@ -17,3 +17,23 @@ body,html,:root{
 *:disabled{
     opacity: 0.5;
 }
+
+@media screen and (max-width: 600px) {
+    :root {
+      font-size: 13px;
+    }
+  }
+  
+  /* Media query for screens between 601px and 900px wide */
+  @media screen and (min-width: 601px) and (max-width: 900px) {
+    :root {
+      font-size: 14px;
+    }
+  }
+  
+  /* Media query for screens 901px and wider */
+  @media screen and (min-width: 901px) {
+    :root {
+      font-size: 16px;
+    }
+  }
