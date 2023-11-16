@@ -40,7 +40,7 @@ const CreatePostForm = ({onCloseFullModal}) => {
       { body: text, image },
       {
         onSettled: () => {
-          onCloseFullModal();
+          onCloseFullModal ? onCloseFullModal() : null;
           setText("");
           setImage(null);
         },
