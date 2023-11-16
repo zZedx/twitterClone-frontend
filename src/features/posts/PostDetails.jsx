@@ -10,6 +10,7 @@ import LikeButton from "../../ui/LikeButton";
 import CommentButton from "../../ui/CommentButton";
 import ShareButton from "../../ui/ShareButton";
 import CreatePostForm from "./CreatePostForm";
+import Posts from "./Posts";
 
 const PostDetails = () => {
   const { post, isLoading, isError } = usePost();
@@ -65,12 +66,13 @@ const PostDetails = () => {
         </div>
 
         <div className="flex gap-8 px-2 py-3 mt-2 border-t border-b">
-          <CommentButton comments={comments} />
+          <CommentButton comments={comments} postId={post._id}/>
           <LikeButton likes={likes} postId={post._id} />
           <ShareButton postId={post._id} username={user.username} />
         </div>
-        <CreatePostForm/>
       </div>
+        <CreatePostForm post={false} postId={post._id}/>
+        <Posts postsObj={{posts:comments}} profileUser={user} isComment={true}/>
     </>
   );
 };

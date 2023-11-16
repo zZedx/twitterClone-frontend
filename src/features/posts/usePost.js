@@ -9,7 +9,7 @@ const usePost = () => {
     isError,
     isLoading,
   } = useQuery({
-    queryKey: ["post", postId],
+    queryKey: [`post-${postId}`],
     queryFn: () => getPost(postId),
   });
   return { post, isError, isLoading };

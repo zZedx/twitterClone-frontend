@@ -5,7 +5,7 @@ import CommentButton from "../../ui/CommentButton";
 import LikeButton from "../../ui/LikeButton";
 import ShareButton from "../../ui/ShareButton";
 
-const Post = ({ post, profileUser }) => {
+const Post = ({ post, profileUser, isComment = false }) => {
   const navigate = useNavigate();
 
   const { body, createdAt, image, likes, comments } = post;
@@ -20,7 +20,7 @@ const Post = ({ post, profileUser }) => {
     <li
       className="flex gap-4 px-4 py-3 border cursor-pointer"
       onClick={() => {
-        navigate(`/${user.username}/post/${post._id}`);
+        !isComment && navigate(`/${user.username}/post/${post._id}`);
       }}
     >
       <Avatar src={user.avatar} onClick={toProfile} />
@@ -48,9 +48,13 @@ const Post = ({ post, profileUser }) => {
           )}
         </div>
         <div className="flex gap-8 mt-4 font-semibold">
-          <CommentButton comments={comments} />
-          <LikeButton likes={likes} postId={post._id} />
-          <ShareButton postId={post._id} username={user.username} />
+          {!isComment && (
+            <CommentButton comments={comments} postId={post._id} />
+          )}
+          <LikeButton likes={likes} postId={post._id}/>
+          {!isComment && (
+            <ShareButton postId={post._id} username={user.username} />
+          )}
         </div>
       </div>
     </li>

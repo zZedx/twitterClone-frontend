@@ -2,7 +2,7 @@ import { BiMessageAlt } from "react-icons/bi";
 import FullModal from "./FullModal";
 import CreatePostForm from "../features/posts/CreatePostForm";
 
-const CommentButton = ({ comments }) => {
+const CommentButton = ({ comments , postId}) => {
   return (
     <FullModal>
       <FullModal.Button opens={"comment"}>
@@ -14,7 +14,7 @@ const CommentButton = ({ comments }) => {
       </button>
       </FullModal.Button>
       <FullModal.Window name={"comment"}>
-        <CreatePostForm/>
+        <CreatePostForm post={false} postId={postId}/>
       </FullModal.Window>
     </FullModal>
   );

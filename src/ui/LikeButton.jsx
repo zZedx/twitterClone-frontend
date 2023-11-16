@@ -2,7 +2,7 @@ import { HiHeart, HiOutlineHeart } from "react-icons/hi2";
 import { useCurrentUser } from "./ProtectedRoutes";
 import useLikePost from "../features/posts/useLikePost";
 
-const LikeButton = ({likes , postId}) => {
+const LikeButton = ({likes , postId }) => {
   const { user: currentUser } = useCurrentUser();
   const { likePost, status } = useLikePost();
   const liked = Boolean(likes.find((like) => like === currentUser._id));

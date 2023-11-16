@@ -8,13 +8,20 @@ import EmojiPicker from "emoji-picker-react";
 import Modal from "../../ui/Modal";
 import useCreatePost from "./useCreatePost";
 import SpinnerMini from "../../ui/SpinnerMini";
+import useComment from "./useComment";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useCurrentUser } from "../../ui/ProtectedRoutes";
 
-const CreatePostForm = ({onCloseFullModal}) => {
+const CreatePostForm = ({ onCloseFullModal, post = true, postId }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const fileInputRef = useRef(null);
   const [image, setImage] = useState(null);
   const [text, setText] = useState("");
 
-  const { createPost, status } = useCreatePost();
+  const { createPost, status: postStatus } = useCreatePost();
+  const { createComment, status: replyStatus } = useComment();
+  const { user: currentUser } = useCurrentUser();
 
   const handleTextareaChange = (e) => {
     setText(e.target.value);
@@ -36,26 +43,52 @@ const CreatePostForm = ({onCloseFullModal}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createPost(
-      { body: text, image },
-      {
-        onSettled: () => {
-          onCloseFullModal ? onCloseFullModal() : null;
-          setText("");
-          setImage(null);
-        },
-      }
-    );
+    if (post) {
+      createPost(
+        { body: text, image },
+        {
+          onSettled: () => {
+            onCloseFullModal ? onCloseFullModal() : null;
+            setText("");
+            setImage(null);
+          },
+          onSuccess: () => {
+            navigate("/home");
+          },
+        }
+      );
+    } else {
+      createComment(
+        { body: text, image, postId },
+        {
+          onSettled: () => {
+            onCloseFullModal ? onCloseFullModal() : null;
+            setText("");
+            setImage(null);
+          },
+          onSuccess: () => {
+            const path = `/${currentUser.username}/post/${postId}`;
+            if (location.pathname !== path) {
+              navigate(`/${currentUser.username}/post/${postId}`);
+            }
+          },
+        }
+      );
+    }
   };
 
   return (
-    <div className={`flex items-start gap-4 p-4 w-full ${onCloseFullModal ? "" : "border-b"}`}>
+    <div
+      className={`flex items-start gap-4 p-4 w-full ${
+        onCloseFullModal ? "" : "border-b"
+      }`}
+    >
       <Avatar />
       <form className="w-full" onSubmit={handleSubmit}>
         <textarea
           name="text"
           onChange={handleTextareaChange}
-          placeholder="What is happening?!"
+          placeholder={post ? "What is happening?!" : "Comment on this post"}
           className="w-full overflow-y-hidden pb-4 text-xl bg-transparent outline-none min-h-[4rem] resize-none focus:border-b whitespace-pre-wrap"
           value={text}
         />
@@ -94,14 +127,29 @@ const CreatePostForm = ({onCloseFullModal}) => {
             />
           </div>
 
-          <Button
-            type="submit"
-            size="normal"
-            style={{ padding: "0.5rem 1.5rem" }}
-            disabled={(text.length === 0 && !image) || status === "pending"}
-          >
-            {status === "pending" ? <SpinnerMini /> : "Post"}
-          </Button>
+          {post ? (
+            <Button
+              type="submit"
+              size="normal"
+              style={{ padding: "0.5rem 1.5rem" }}
+              disabled={
+                (text.length === 0 && !image) || postStatus === "pending"
+              }
+            >
+              {postStatus === "pending" ? <SpinnerMini /> : "Post"}
+            </Button>
+          ) : (
+            <Button
+              type="submit"
+              size="normal"
+              style={{ padding: "0.5rem 1.5rem" }}
+              disabled={
+                (text.length === 0 && !image) || replyStatus === "pending"
+              }
+            >
+              {replyStatus === "pending" ? <SpinnerMini /> : "Comment"}
+            </Button>
+          )}
         </div>
       </form>
     </div>

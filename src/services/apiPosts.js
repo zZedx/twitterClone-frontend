@@ -32,3 +32,11 @@ export const getPost = errorHandler(async (id) => {
   const res = await axios.get(apiUrl + `posts/${id}`);
   return res.data;
 }); 
+
+export const createComment = errorHandler(async (body , image , postId) => {
+  const newComment = new FormData();
+  newComment.append("image", image);
+  newComment.append("body", body);
+  const res = await axios.post(apiUrl + `posts/${postId}/comment` , newComment , {withCredentials: true});
+  return res.data;
+});
