@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Avatar from "../../ui/Avatar";
 import { timeAgo } from "../../utils/date";
 import CommentButton from "../../ui/CommentButton";
-import LikeButton from "../../ui/LikeBUtton";
+import LikeButton from "../../ui/LikeButton";
 import ShareButton from "../../ui/ShareButton";
 
 const Post = ({ post, profileUser }) => {

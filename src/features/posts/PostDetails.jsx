@@ -6,7 +6,7 @@ import Spinner from "../../ui/Spinner";
 import ServerError from "../../ui/ServerError";
 import { useNavigate } from "react-router-dom";
 import { formatDate } from "../../utils/date";
-import LikeButton from "../../ui/LikeBUtton";
+import LikeButton from "../../ui/LikeButton";
 import CommentButton from "../../ui/CommentButton";
 import ShareButton from "../../ui/ShareButton";
 import CreatePostForm from "./CreatePostForm";
