@@ -9,7 +9,7 @@ const Post = ({ post, profileUser, isComment = false }) => {
   const navigate = useNavigate();
 
   const { body, createdAt, image, likes, comments } = post;
-  let user = profileUser || post.user;
+  let user = post.user || profileUser;
 
   function toProfile(e) {
     e.stopPropagation();
