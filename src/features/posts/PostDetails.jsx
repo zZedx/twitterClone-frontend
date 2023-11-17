@@ -72,7 +72,7 @@ const PostDetails = () => {
         </div>
       </div>
         <CreatePostForm post={false} postId={post._id}/>
-        <Posts postsObj={{posts:comments}} profileUser={user} isComment={true}/>
+        <Posts postsObj={{posts:comments}} isComment={true}/>
     </>
   );
 };

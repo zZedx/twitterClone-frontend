@@ -9,7 +9,7 @@ const Post = ({ post, profileUser, isComment = false }) => {
   const navigate = useNavigate();
 
   const { body, createdAt, image, likes, comments } = post;
-  let user = post.user || profileUser;
+  let user = profileUser || post.user;
 
   function toProfile(e) {
     e.stopPropagation();
@@ -51,7 +51,7 @@ const Post = ({ post, profileUser, isComment = false }) => {
           {!isComment && (
             <CommentButton comments={comments} postId={post._id} />
           )}
-          <LikeButton likes={likes} postId={post._id}/>
+          <LikeButton likes={likes} postId={post._id} />
           {!isComment && (
             <ShareButton postId={post._id} username={user.username} />
           )}
