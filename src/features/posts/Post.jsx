@@ -53,7 +53,7 @@ const Post = ({ post, profileUser, isComment = false }) => {
           )}
           <LikeButton likes={likes} postId={post._id} />
           {!isComment && (
-            <ShareButton postId={post._id} username={user.username} />
+            <ShareButton postId={post._id} />
           )}
         </div>
       </div>

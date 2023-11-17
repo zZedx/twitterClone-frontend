@@ -62,17 +62,19 @@ const PostDetails = () => {
             />
           )}
 
-          <span className="mt-2 text-sm text-white/40">{formatDate(createdAt)}</span>
+          <span className="mt-2 text-sm text-white/40">
+            {formatDate(createdAt)}
+          </span>
         </div>
 
         <div className="flex gap-8 px-2 py-3 mt-2 border-t border-b">
-          <CommentButton comments={comments} postId={post._id}/>
+          <CommentButton comments={comments} postId={post._id} />
           <LikeButton likes={likes} postId={post._id} />
-          <ShareButton postId={post._id} username={user.username} />
+          <ShareButton postId={post._id} />
         </div>
       </div>
-        <CreatePostForm post={false} postId={post._id}/>
-        <Posts postsObj={{posts:comments}} isComment={true}/>
+      <CreatePostForm post={false} postId={post._id} />
+      <Posts postsObj={{ posts: comments }} isComment={true} />
     </>
   );
 };
