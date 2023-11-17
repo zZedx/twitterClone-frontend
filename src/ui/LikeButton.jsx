@@ -18,7 +18,7 @@ const LikeButton = ({likes , postId }) => {
         liked ? "text-pink-500" : "text-white/50"
       }`}
       onClick={handleLike}
-      disabled={status === "loading"}
+      disabled={status === "pending"}
     >
       <span className="text-xl">
         {liked ? <HiHeart /> : <HiOutlineHeart />}
