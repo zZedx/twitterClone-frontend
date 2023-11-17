@@ -77,8 +77,8 @@ const CreatePostForm = ({ onCloseFullModal, post = true, postId }) => {
 
   return (
     <div
-      className={`flex items-start gap-4 p-4 w-full ${
-        onCloseFullModal ? "" : "border-b"
+      className={`flex items-start gap-4 w-full ${
+        onCloseFullModal ? "" : "border-b p-4"
       }`}
     >
       <Avatar />
