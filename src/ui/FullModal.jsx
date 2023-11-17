@@ -42,9 +42,9 @@ function Window({ children, name }) {
         className="fixed top-0 left-0 w-full h-full bg-white bg-opacity-20"
         onClick={close}
       ></div>
-      <div className="fixed flex flex-col w-full transform -translate-x-1/2 bg-black shadow-lg rounded-2xl top-20 left-1/2 max-w-[42rem]">
+      <div className="fixed flex flex-col px-12 py-8 w-full transform -translate-x-1/2 bg-black shadow-lg rounded-2xl top-20 left-1/2 max-w-[42rem]">
         <button
-          className="p-1 mt-3 ml-auto mr-4 transition duration-300 rounded-full hover:bg-gray-800"
+          className="absolute p-1 transition duration-300 rounded-full top-3 right-4 hover:bg-gray-700"
           onClick={close}
         >
           <HiX className="w-5 h-5"/>

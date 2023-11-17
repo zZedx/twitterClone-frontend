@@ -1,4 +1,4 @@
-const ProfileButton = ({ children, onClick, type }) => {
+const ButtonSecondary = ({ children, onClick, type }) => {
   const style = type === "outline" ? "bg-transparent" : "bg-white text-black";
   return (
     <button
@@ -10,4 +10,4 @@ const ProfileButton = ({ children, onClick, type }) => {
   );
 };
 
-export default ProfileButton;
+export default ButtonSecondary;

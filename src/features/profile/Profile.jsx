@@ -7,7 +7,9 @@ import BackButton from "../../ui/BackButton";
 import { HiCalendar, HiOutlineEnvelope } from "react-icons/hi2";
 import { useCurrentUser } from "../../ui/ProtectedRoutes";
 import Posts from "../posts/Posts";
-import ProfileButton from "../../ui/ProfileButton";
+import ButtonSecondary from "../../ui/ButtonSecondary";
+import EditProfile from "./EditProfile";
+import { profileDate } from "../../utils/date";
 
 const Profile = () => {
   const { username } = useParams();
@@ -39,9 +41,12 @@ const Profile = () => {
 
       <div className="relative mt-16">
         <img
-          src={profile.cover}
+          src={
+            profile.coverImage ||
+            "https://images.unsplash.com/photo-1528731708534-816fe59f90cb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          }
           alt=""
-          className="object-contain object-center w-full bg-gray-500 border-none h-44"
+          className="object-cover object-center w-full outline-none bg-white/10 h-44"
         />
         <img
           src={profile.avatar}
@@ -50,29 +55,29 @@ const Profile = () => {
         />
         <div className="flex justify-end w-full gap-3 px-4 py-3">
           {isAdmin ? (
-            <ProfileButton type={"outline"}>Edit Profile</ProfileButton>
+            <EditProfile />
           ) : (
             <>
               <button className="flex items-center justify-center w-10 h-10 text-2xl bg-transparent border rounded-full hover:bg-secondary">
                 <HiOutlineEnvelope />
               </button>
-              <ProfileButton>Follow</ProfileButton>
+              <ButtonSecondary>Follow</ButtonSecondary>
             </>
           )}
         </div>
       </div>
       <div className="px-5 py-2">
         <h1 className="text-2xl font-bold">{profile.displayName}</h1>
-        <span className="-m-1 text-white/40">@{profile.username}</span>
-        <p className="mt-2">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae
-          vero soluta ex consequuntur saepe, voluptatum expedita est maiores
-          cumque, architecto pariatur nostrum quia a rerum illum autem natus
-          libero corrupti?
-        </p>
+        <span className=" text-white/40">@{profile.username}</span>
+        <p
+          className="mt-2"
+          dangerouslySetInnerHTML={{
+            __html: profile.bio?.replace(/\n/g, "<br>"),
+          }}
+        />
 
         <span className="flex items-center gap-1 mt-2 text-white/40">
-          <HiCalendar /> Joined Mar 14
+          <HiCalendar /> {profileDate(profile.createdAt)}
         </span>
 
         <div className="flex gap-6 mt-2 mb-3">
@@ -87,7 +92,7 @@ const Profile = () => {
         </div>
       </div>
       <ul className="flex h-12">
-      <Filter name="Posts" active={true} />
+        <Filter name="Posts" active={true} />
       </ul>
       <Posts postsObj={{ posts: profile.posts }} profileUser={user} />
     </>

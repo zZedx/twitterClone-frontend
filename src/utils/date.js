@@ -34,3 +34,10 @@ export function formatDate (date) {
   const formattedDate = d.toLocaleDateString(undefined, options)
   return `${time} ${formattedDate}`
 }
+
+export function profileDate (date) {
+  const d = new Date(date)
+  const options = { month: 'short', day: 'numeric', year: 'numeric' }
+  const formattedDate = d.toLocaleDateString(undefined, options)
+  return `${formattedDate}`
+}
