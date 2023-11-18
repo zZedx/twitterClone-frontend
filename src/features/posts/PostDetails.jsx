@@ -11,13 +11,18 @@ import CommentButton from "../../ui/CommentButton";
 import ShareButton from "../../ui/ShareButton";
 import CreatePostForm from "./CreatePostForm";
 import Posts from "./Posts";
+import PostOptions from "./PostOptions";
+import { useCurrentUser } from "../../ui/ProtectedRoutes";
 
 const PostDetails = () => {
   const { post, isLoading, isError } = usePost();
+  const {user : currentUser} = useCurrentUser();
   const navigate = useNavigate();
 
   if (isLoading) return <Spinner />;
   if (isError) return <ServerError>No Post Found</ServerError>;
+  
+  if(!post) return <ServerError>No Post Found</ServerError>;
 
   const { user, body, createdAt, likes, comments, image } = post;
 
@@ -49,6 +54,7 @@ const PostDetails = () => {
               @{user.username}
             </span>
           </div>
+            {user._id === currentUser._id && <PostOptions postId={post._id} />}
         </div>
         <div className="flex flex-col gap-2 mt-3">
           <p

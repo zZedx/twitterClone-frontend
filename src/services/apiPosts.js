@@ -40,3 +40,8 @@ export const createComment = errorHandler(async (body , image , postId) => {
   const res = await axios.post(apiUrl + `posts/${postId}/comment` , newComment , {withCredentials: true});
   return res.data;
 });
+
+export const deletePost = errorHandler(async (id) => {
+  const res = await axios.delete(apiUrl + `posts/${id}` , config);
+  return res.data;
+});

@@ -1,19 +1,19 @@
 const ModalList = ({ children }) => {
   return (
-    <div className="z-10 flex flex-col gap-2 bg-black border-2 rounded-md w-fit shadow-shadowMain">
+    <div className="flex flex-col border-2 rounded-md w-fit shadow-shadowMain">
       {children}
     </div>
   );
 };
 
-const Item = ({ label, onClick, disabled }) => {
+const Item = ({ children, onClick, disabled }) => {
   return (
     <button
-      className="px-4 py-1 hover:bg-secondary"
+      className="z-20 px-4 py-1 font-bold text-left bg-black hover:bg-secondary"
       onClick={onClick}
       disabled={disabled}
     >
-      {label}
+      {children}
     </button>
   );
 };

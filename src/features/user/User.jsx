@@ -22,9 +22,9 @@ const User = () => {
           </div>
         </div>
       </Modal.Button>
-      <Modal.Body position={"-top-1/4 right-0"}>
+      <Modal.Body position={"-top-2/4 right-0"}>
         <ModalList>
-          <ModalList.Item label="Logout" onClick={logout} disabled={status === "pending"}/>
+          <ModalList.Item onClick={logout} disabled={status === "pending"}>Logout</ModalList.Item>
         </ModalList>
       </Modal.Body>
     </Modal>
