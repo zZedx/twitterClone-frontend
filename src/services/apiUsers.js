@@ -14,3 +14,8 @@ export const getUserProfile = errorHandler(async(username) => {
     const res = await axios.get(apiUrl + "users/" + username, config);
     return res.data;
 });
+
+export const followUnfollowUser = errorHandler(async(username) => {
+    const res = await axios.put(apiUrl + "users/" + username + "/followUnfollow", {}, config);
+    return res.data;
+});

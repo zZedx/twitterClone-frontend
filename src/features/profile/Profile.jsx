@@ -7,9 +7,9 @@ import BackButton from "../../ui/BackButton";
 import { HiCalendar, HiOutlineEnvelope } from "react-icons/hi2";
 import { useCurrentUser } from "../../ui/ProtectedRoutes";
 import Posts from "../posts/Posts";
-import ButtonSecondary from "../../ui/ButtonSecondary";
 import EditProfile from "./EditProfile";
 import { profileDate } from "../../utils/date";
+import FollowButton from "./FollowButton";
 
 const Profile = () => {
   const { username } = useParams();
@@ -61,7 +61,7 @@ const Profile = () => {
               <button className="flex items-center justify-center w-10 h-10 text-2xl bg-transparent border rounded-full hover:bg-secondary">
                 <HiOutlineEnvelope />
               </button>
-              <ButtonSecondary>Follow</ButtonSecondary>
+              <FollowButton username = {profile.username} userId = {profile._id}/>
             </>
           )}
         </div>
