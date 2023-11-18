@@ -35,7 +35,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/messages",
-        element: <Home />,
+        element: <h1>Coming Soon</h1>,
       },
       {
         path: "/:username",

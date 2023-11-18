@@ -27,7 +27,7 @@ const Home = () => {
         <CreatePostForm />
       </div>
       
-      <Posts usePosts={usePosts}/>
+      <Posts usePosts={usePosts} filter={filter}/>
     </div>
   );
 };

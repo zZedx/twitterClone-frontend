@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query"
 import { getAllPosts } from "../../services/apiPosts"
 
-const usePosts = () => {
+const usePosts = (filter) => {
   const {data : posts , isError , isLoading} = useQuery({
-    queryKey : ["posts"],
-    queryFn : getAllPosts
+    queryKey : ["posts" , filter],
+    queryFn : ()=>getAllPosts(filter)
   })
   return {posts , isError , isLoading}
 }

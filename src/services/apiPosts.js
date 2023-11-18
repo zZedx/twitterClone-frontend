@@ -10,8 +10,8 @@ const config = {
   withCredentials: true,
 };
 
-export const getAllPosts = errorHandler(async () => {
-  const res = await axios.get(apiUrl + "posts");
+export const getAllPosts = errorHandler(async (filter) => {
+  const res = await axios.get(apiUrl + "posts" , {params : {filter} , ...config });
   return res.data;
 });
 
