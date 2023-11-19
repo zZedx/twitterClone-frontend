@@ -33,7 +33,7 @@ const PostDetails = () => {
 
   return (
     <>
-      <Header addClass="gap-4 px-4 py-3">
+      <Header addClass="gap-4 px-4 py-3 w-full sm:w-[calc(100%-6rem)] md:w-3/4 lg:w-[calc(66.66%-6rem)] xl:w-2/4 2xl:w-2/6">
         <BackButton />
         <span className="text-xl font-bold">Post</span>
       </Header>

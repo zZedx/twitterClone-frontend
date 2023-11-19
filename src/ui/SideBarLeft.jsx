@@ -38,7 +38,7 @@ const SideBarLeft = () => {
         activeStyle={"font-bold"}
       />
       <StyledLink
-        to="/search"
+        to="/explore"
         text="Explore"
         icon={<HiOutlineMagnifyingGlass />}
         activeIcon={<HiMagnifyingGlass />}

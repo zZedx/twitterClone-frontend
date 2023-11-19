@@ -15,6 +15,7 @@ import ProtectedRoutes from "./ui/ProtectedRoutes";
 import Profile from "./features/profile/Profile";
 import PostDetails from "./features/posts/PostDetails";
 import PageNotFound from "./ui/PageNotFound";
+import Explore from "./pages/Explore";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: "/messages",
         element: <h1>Coming Soon</h1>,
+      },
+      {
+        path: "/explore",
+        element: <Explore/>,
       },
       {
         path: "/:username",

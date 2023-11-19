@@ -19,3 +19,8 @@ export const followUnfollowUser = errorHandler(async(username) => {
     const res = await axios.put(apiUrl + "users/" + username + "/followUnfollow", {}, config);
     return res.data;
 });
+
+export const searchUsers = errorHandler(async(query) => {
+    const res = await axios.get(apiUrl + "users/search/" + query, config);
+    return res.data;
+});

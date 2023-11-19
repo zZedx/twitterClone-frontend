@@ -13,7 +13,7 @@ const AppLayout = () => {
         <Outlet />
       </main>
       
-      <aside className="fixed top-0 right-0 hidden w-2/6 h-screen border-l xl:w-1/4 2xl:right-[8.4%] lg:block">
+      <aside className="pl-8 fixed top-0 right-0 hidden w-2/6 h-screen border-l xl:w-1/4 2xl:right-[8.4%] lg:block">
         <SideBarRight />
       </aside>
     </div>
