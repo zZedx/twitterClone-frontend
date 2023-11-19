@@ -9,7 +9,6 @@ const useComment = () => {
       createCommentApi(body, image, postId),
     onSuccess: (data , variables) => {
       const { postId } = variables;
-      console.log(postId)
       toast.success("Comment created");
       queryClient.invalidateQueries({ queryKey: [`post-${postId}`] });
       queryClient.invalidateQueries({ queryKey: ["posts"] });

@@ -9,7 +9,8 @@ const useLogout = () => {
     const { mutate : logout, status} = useMutation({
         mutationFn: logoutApi,
         onSuccess: () => {
-            queryClient.removeQueries("user")
+            toast.success("Logged out")
+            queryClient.clear()
             navigate("/login" , {replace : true})
         },
         onError: (e) => toast.error(e.message)

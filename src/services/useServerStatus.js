@@ -7,7 +7,7 @@ const useServerStatus = () => {
     isLoading,
     isError,
   } = useQuery({
-    queryKey: "status",
+    queryKey: ["status"],
     queryFn: checkStatus,
     retry: true,
   });

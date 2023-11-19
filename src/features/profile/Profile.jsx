@@ -4,17 +4,29 @@ import Spinner from "../../ui/Spinner";
 import ServerError from "../../ui/ServerError";
 import Header, { Filter } from "../../ui/Header";
 import BackButton from "../../ui/BackButton";
-import { HiCalendar, HiOutlineEnvelope } from "react-icons/hi2";
+import {
+  HiCalendar,
+  HiEllipsisVertical,
+  HiOutlineEnvelope,
+} from "react-icons/hi2";
 import { useCurrentUser } from "../../ui/ProtectedRoutes";
 import Posts from "../posts/Posts";
 import EditProfile from "./EditProfile";
 import { profileDate } from "../../utils/date";
 import FollowButton from "./FollowButton";
+import Modal from "../../ui/Modal";
+import ModalList from "../../ui/ModalList";
+import useLogout from "../auth/useLogout";
+import FullModal from "../../ui/FullModal";
+import ConfirmDelete from "../../ui/ConfirmDelete";
+import useDeleteAccount from "./useDeleteAccount";
 
 const Profile = () => {
   const { username } = useParams();
   const { user: currentUser } = useCurrentUser();
   const { user, isLoading, isError } = useUserProfile(username);
+  const { logout, status } = useLogout();
+  const {deleteAccount , status : deleteStatus} = useDeleteAccount();
 
   if (isLoading) return <Spinner />;
   if (!user || isError) return <ServerError>Profile not found</ServerError>;
@@ -26,7 +38,20 @@ const Profile = () => {
     isAdmin = false;
   }
   const profile = user;
-  const {posts , following , followers , displayName , avatar , coverImage , bio ,createdAt } = profile;
+  const {
+    posts,
+    following,
+    followers,
+    displayName,
+    avatar,
+    coverImage,
+    bio,
+    createdAt,
+  } = profile;
+
+  const handleDelete = () => {
+    deleteAccount();
+  };
 
   return (
     <>
@@ -34,9 +59,7 @@ const Profile = () => {
         <BackButton />
         <div className="flex flex-col">
           <span className="text-xl font-bold">{displayName}</span>
-          <span className="text-sm text-white/50">
-            {posts.length} posts
-          </span>
+          <span className="text-sm text-white/50">{posts.length} posts</span>
         </div>
       </Header>
 
@@ -54,15 +77,44 @@ const Profile = () => {
           alt=""
           className="absolute object-cover object-center w-36 h-36 border-[3px] border-black rounded-full bottom-0 left-4"
         />
-        <div className="flex justify-end w-full gap-3 px-4 py-3">
+        <div className="flex items-center justify-end w-full gap-3 px-4 py-3">
           {isAdmin ? (
-            <EditProfile />
+            <>
+              <EditProfile />
+              <Modal>
+                <Modal.Button>
+                  <HiEllipsisVertical className="text-2xl cursor-pointer" />
+                </Modal.Button>
+                <Modal.Body>
+                  <ModalList>
+                    <ModalList.Item
+                      onClick={logout}
+                      disabled={status === "pending"}
+                    >
+                      Logout
+                    </ModalList.Item>
+                    <FullModal>
+                      <FullModal.Button opens={"delete"}>
+                        <ModalList.Item>
+                          <span className="text-red-600 whitespace-nowrap">
+                            Delete Account
+                          </span>
+                        </ModalList.Item>
+                      </FullModal.Button>
+                      <FullModal.Window name={"delete"}>
+                        <ConfirmDelete onConfirm={handleDelete} text={"Account"} />
+                      </FullModal.Window>
+                    </FullModal>
+                  </ModalList>
+                </Modal.Body>
+              </Modal>
+            </>
           ) : (
             <>
               <button className="flex items-center justify-center w-10 h-10 text-2xl bg-transparent border rounded-full hover:bg-secondary">
                 <HiOutlineEnvelope />
               </button>
-              <FollowButton username = {username} userId = {profile._id}/>
+              <FollowButton username={username} userId={profile._id} />
             </>
           )}
         </div>

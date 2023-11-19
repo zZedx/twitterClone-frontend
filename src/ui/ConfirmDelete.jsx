@@ -1,9 +1,9 @@
-const ConfirmDelete = ({ onConfirm, onCloseFullModal }) => {
+const ConfirmDelete = ({ onConfirm, onCloseFullModal , text}) => {
   return (
     <div className="relative z-50 flex flex-col items-center justify-center rounded-xl">
-      <h1 className="text-xl font-bold">Delete Post</h1>
+      <h1 className="text-xl font-bold">Delete {text}</h1>
       <p className="mt-2 text-center">
-        Are you sure you want to delete this post?
+        Are you sure you want to delete this {text}?
       </p>
       <div className="flex gap-4 mt-4">
         <button

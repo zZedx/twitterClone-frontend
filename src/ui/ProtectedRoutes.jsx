@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import useUser from "../features/user/useUser";
 import ServerStatus from "./ServerStatus";
 
-import { createContext, useContext } from "react";
+import { createContext, useContext, useEffect } from "react";
 import Spinner from "./Spinner";
 
 const UserContext = createContext();
@@ -11,6 +11,12 @@ const ProtectedRoutes = ({ children }) => {
   const navigate = useNavigate();
   const { user, isLoading } = useUser();
 
+  useEffect(() => {
+    if (!user) {
+      navigate("/login", { replace: true });
+    }
+  }, [user , navigate]);
+  
   if (!isLoading && !user) navigate("/login", { replace: true });
 
   if (isLoading)

@@ -24,3 +24,8 @@ export const searchUsers = errorHandler(async(query) => {
     const res = await axios.get(apiUrl + "users/search/" + query, config);
     return res.data;
 });
+
+export const deleteAccount = errorHandler(async() => {
+    const res = await axios.delete(apiUrl + "users/deleteAccount", config);
+    return res.data;
+});
