@@ -12,10 +12,10 @@ const ProtectedRoutes = ({ children }) => {
   const { user, isLoading } = useUser();
 
   useEffect(() => {
-    if (!user) {
+    if (!isLoading && !user) {
       navigate("/login", { replace: true });
     }
-  }, [user , navigate]);
+  }, [user , navigate , isLoading]);
   
   if (!isLoading && !user) navigate("/login", { replace: true });
 
