@@ -11,7 +11,7 @@ const Posts = ({usePosts , postsObj , profileUser ,isComment , filter}) => {
   const sortPosts = posts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
   if(!posts.length) return (<div className="flex items-center justify-center h-64">
-    <span className="text-2xl font-bold text-white/50">No posts found</span>
+    <span className="text-2xl font-bold text-white/50">No {isComment ? "Comments" : "Posts"}</span>
   </div>);
   return (
     <ul>

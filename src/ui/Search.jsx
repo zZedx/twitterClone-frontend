@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { HiOutlineMagnifyingGlass, HiXCircle } from "react-icons/hi2";
+import { HiOutlineMagnifyingGlass } from "react-icons/hi2";
 import SearchResults from "./SearchResults";
 import { HiX } from "react-icons/hi";
 

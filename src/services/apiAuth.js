@@ -54,3 +54,8 @@ export const updateUser = errorHandler(async (data) => {
   const res = await axios.patch(apiUrl + "users/updateUser", updateUserData, {withCredentials: true});
   return res.data;
 });
+
+export const checkStatus = errorHandler(async () => {
+  const res = await axios.get(apiUrl + "status", config);
+  return res.data;
+});
