@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
-import { HiOutlineMagnifyingGlass } from "react-icons/hi2";
+import { HiOutlineMagnifyingGlass, HiXCircle } from "react-icons/hi2";
 import SearchResults from "./SearchResults";
+import { HiX } from "react-icons/hi";
 
 const Search = ({ addClass }) => {
   const inputRef = useRef();
@@ -35,6 +36,14 @@ const Search = ({ addClass }) => {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
+          {query && (
+            <button
+              className="p-1 text-lg text-black rounded-full bg-brand"
+              onClick={() => setQuery("")}
+            >
+              <HiX />
+            </button>
+          )}
         </div>
         {query && <SearchResults query={query} />}
       </div>
