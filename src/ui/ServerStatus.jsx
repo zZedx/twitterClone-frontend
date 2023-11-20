@@ -2,9 +2,7 @@ import useServerStatus from "../services/useServerStatus";
 import SpinnerMini from "./SpinnerMini";
 
 const ServerStatus = () => {
-  const {status , isLoading} = useServerStatus();
-
-  if(!status) return null;
+  const {isLoading} = useServerStatus();
   return (
     <div
       className={`fixed top-0 left-0 p-4 text-2xl text-center w-full flex justify-center items-center gap-4 z-[10000] ${
