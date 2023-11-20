@@ -16,13 +16,17 @@ import Profile from "./features/profile/Profile";
 import PostDetails from "./features/posts/PostDetails";
 import PageNotFound from "./ui/PageNotFound";
 import Explore from "./pages/Explore";
+import { ErrorBoundary } from "react-error-boundary";
+import ServerError from "./ui/ServerError";
 
 const router = createBrowserRouter([
   {
     element: (
-      <ProtectedRoutes>
-        <AppLayout />
-      </ProtectedRoutes>
+      <ErrorBoundary FallbackComponent={ServerError} onReset={() => window.location.replace("/home")}>
+        <ProtectedRoutes>
+          <AppLayout />
+        </ProtectedRoutes>
+      </ErrorBoundary>
     ),
     children: [
       {
@@ -40,16 +44,16 @@ const router = createBrowserRouter([
       },
       {
         path: "/explore",
-        element: <Explore/>,
+        element: <Explore />,
       },
       {
         path: "/:username",
-        element: <Profile/>,
+        element: <Profile />,
       },
       {
-        path : "/post/:postId",
-        element : <PostDetails/>
-      }
+        path: "/post/:postId",
+        element: <PostDetails />,
+      },
     ],
   },
   {
@@ -62,8 +66,8 @@ const router = createBrowserRouter([
   },
   {
     path: "*",
-    element: <PageNotFound/>,
-  }
+    element: <PageNotFound />,
+  },
 ]);
 
 const queryClient = new QueryClient({
