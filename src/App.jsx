@@ -12,7 +12,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { Toaster } from "react-hot-toast";
 import ProtectedRoutes from "./ui/ProtectedRoutes";
-import Profile from "./features/profile/Profile";
+import Profile from "./pages/Profile";
 import PostDetails from "./features/posts/PostDetails";
 import PageNotFound from "./ui/PageNotFound";
 import Explore from "./pages/Explore";
@@ -22,7 +22,10 @@ import ServerError from "./ui/ServerError";
 const router = createBrowserRouter([
   {
     element: (
-      <ErrorBoundary FallbackComponent={ServerError} onReset={() => window.location.replace("/home")}>
+      <ErrorBoundary
+        FallbackComponent={ServerError}
+        onReset={() => window.location.replace("/home")}
+      >
         <ProtectedRoutes>
           <AppLayout />
         </ProtectedRoutes>

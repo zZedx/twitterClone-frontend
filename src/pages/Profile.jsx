@@ -1,32 +1,32 @@
 import { useParams } from "react-router-dom";
-import useUserProfile from "./useUserProfile";
-import Spinner from "../../ui/Spinner";
-import ServerError from "../../ui/ServerError";
-import Header, { Filter } from "../../ui/Header";
-import BackButton from "../../ui/BackButton";
+import useUserProfile from "../features/profile/useUserProfile";
+import Spinner from "../ui/Spinner";
+import ServerError from "../ui/ServerError";
+import Header, { Filter } from "../ui/Header";
+import BackButton from "../ui/BackButton";
 import {
   HiCalendar,
   HiEllipsisVertical,
   HiOutlineEnvelope,
 } from "react-icons/hi2";
-import { useCurrentUser } from "../../ui/ProtectedRoutes";
-import Posts from "../posts/Posts";
-import EditProfile from "./EditProfile";
-import { profileDate } from "../../utils/date";
-import FollowButton from "./FollowButton";
-import Modal from "../../ui/Modal";
-import ModalList from "../../ui/ModalList";
-import useLogout from "../auth/useLogout";
-import FullModal from "../../ui/FullModal";
-import ConfirmDelete from "../../ui/ConfirmDelete";
-import useDeleteAccount from "./useDeleteAccount";
+import { useCurrentUser } from "../ui/ProtectedRoutes";
+import Posts from "../features/posts/Posts";
+import EditProfile from "../features/profile/EditProfile";
+import { profileDate } from "../utils/date";
+import FollowButton from "../features/profile/FollowButton";
+import Modal from "../ui/Modal";
+import ModalList from "../ui/ModalList";
+import useLogout from "../features/auth/useLogout";
+import FullModal from "../ui/FullModal";
+import ConfirmDelete from "../ui/ConfirmDelete";
+import useDeleteAccount from "../features/profile/useDeleteAccount";
 
 const Profile = () => {
   const { username } = useParams();
   const { user: currentUser } = useCurrentUser();
   const { user, isLoading, isError } = useUserProfile(username);
   const { logout, status } = useLogout();
-  const {deleteAccount , status : deleteStatus} = useDeleteAccount();
+  const { deleteAccount, status: deleteStatus } = useDeleteAccount();
 
   if (isLoading) return <Spinner />;
   if (!user || isError) return <ServerError>Profile not found</ServerError>;
@@ -102,7 +102,10 @@ const Profile = () => {
                         </ModalList.Item>
                       </FullModal.Button>
                       <FullModal.Window name={"delete"}>
-                        <ConfirmDelete onConfirm={handleDelete} text={"Account"} />
+                        <ConfirmDelete
+                          onConfirm={handleDelete}
+                          text={"Account"}
+                        />
                       </FullModal.Window>
                     </FullModal>
                   </ModalList>
