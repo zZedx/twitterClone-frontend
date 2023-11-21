@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 
-const User = ({user}) => {
+const User = ({ user, to }) => {
   return (
     <li
       key={user.id}
-      className="px-4 py-2 bg-black rounded-lg bg-opacity-80 backdrop-blur-lg"
+      className="px-4 py-2 bg-black bg-opacity-80 backdrop-blur-lg"
     >
-      <Link to={`/${user.username}`} className="flex items-center gap-4">
+      <Link to={to || `/${user.username}`} className="flex items-center gap-4">
         <img
           src={user.avatar}
           alt={user.username}

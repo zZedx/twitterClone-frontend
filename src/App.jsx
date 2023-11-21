@@ -18,6 +18,8 @@ import PageNotFound from "./ui/PageNotFound";
 import Explore from "./pages/Explore";
 import { ErrorBoundary } from "react-error-boundary";
 import ServerError from "./ui/ServerError";
+import Messages from "./pages/Messages";
+import MessageRoom from "./features/Messaging/MessageRoom";
 
 const router = createBrowserRouter([
   {
@@ -43,7 +45,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/messages",
-        element: <h1>Coming Soon</h1>,
+        element: <Messages/>,
+      },
+      {
+        path : "/message/:username",
+        element: <MessageRoom/>,
       },
       {
         path: "/explore",
