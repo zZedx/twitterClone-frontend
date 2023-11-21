@@ -1,16 +1,22 @@
 import { useState } from "react";
 import { VscSend } from "react-icons/vsc";
 import socket from "../../socket";
+import { useCurrentUser } from "../../ui/ProtectedRoutes";
 
-const MessageForm = ({sharedRoomId}) => {
+const MessageForm = ({sharedRoomId , receiver}) => {
   const [message, setMessage] = useState("");
+  const {user : sender} = useCurrentUser();
 
   function handleSubmit(e) {
     e.preventDefault();
+    if(!message) return;
     socket.emit("send_message", {
       room: sharedRoomId,
       message,
+      sender,
+      receiver,
     });
+    setMessage("");
   }
   return (
     <form
@@ -22,9 +28,9 @@ const MessageForm = ({sharedRoomId}) => {
         onChange={(e) => setMessage(e.target.value)}
         type="text"
         className="w-full bg-transparent outline-none min-h-[3rem]"
-        placeholder="Start a new message"
+        placeholder="Hello"
       />
-      <button>
+      <button disabled={!message} className="disabled:cursor-not-allowed">
         <VscSend className="text-2xl text-brand" />
       </button>
     </form>
