@@ -45,7 +45,7 @@ const MessageRoom = () => {
         <BackButton />
         <h1 className="ml-4 text-xl font-bold">{receiver.username}</h1>
       </Header>
-      <div className="flex flex-col h-screen pt-16 overflow-auto">
+      <div className="flex flex-col h-[calc(100vh-5.5rem)] sm:h-screen pt-16 overflow-auto">
         <ul className="w-full">
           {messages.map((message , i) => (
             <li key={i}>
