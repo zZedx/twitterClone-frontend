@@ -40,7 +40,7 @@ const MessageRoom = () => {
         <BackButton />
         <Link to={`/${receiver.username}`} className="ml-4 text-xl font-bold">{receiver.username}</Link>
       </Header>
-      <div className="flex flex-col h-[calc(100vh-5.5rem)] sm:h-screen pt-16 overflow-auto">
+      <div className="flex flex-col h-[calc(100dvh-5.5rem)] sm:h-screen pt-16 overflow-auto">
         <Messages sharedRoomId={sharedRoomId} />
         <div className="flex w-full p-2 mt-auto border">
           <MessageForm sharedRoomId={sharedRoomId} receiver={receiver} />

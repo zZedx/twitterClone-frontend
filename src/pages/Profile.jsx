@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useUserProfile from "../features/profile/useUserProfile";
 import Spinner from "../ui/Spinner";
 import ServerError from "../ui/ServerError";
@@ -26,7 +26,7 @@ const Profile = () => {
   const { user: currentUser } = useCurrentUser();
   const { user, isLoading, isError } = useUserProfile(username);
   const { logout, status } = useLogout();
-  const { deleteAccount, status: deleteStatus } = useDeleteAccount();
+  const { deleteAccount } = useDeleteAccount();
 
   if (isLoading) return <Spinner />;
   if (!user || isError) return <ServerError>Profile not found</ServerError>;
@@ -114,9 +114,9 @@ const Profile = () => {
             </>
           ) : (
             <>
-              <button className="flex items-center justify-center w-10 h-10 text-2xl bg-transparent border rounded-full hover:bg-secondary">
+              <Link to={`/message/${username}`} className="flex items-center justify-center w-10 h-10 text-2xl bg-transparent border rounded-full hover:bg-secondary">
                 <HiOutlineEnvelope />
-              </button>
+              </Link>
               <FollowButton username={username} userId={profile._id} />
             </>
           )}

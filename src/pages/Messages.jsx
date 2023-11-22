@@ -1,11 +1,11 @@
-import useFollowedUsers from "../features/Messaging/useFollowedUsers";
+import useMessageUsers from "../features/Messaging/useMessageUsers";
 import Header from "../ui/Header";
 import ServerError from "../ui/ServerError";
 import Spinner from "../ui/Spinner";
 import User from "../ui/User";
 
 const Messages = () => {
-  const { followedUsers, isLoading, isError } = useFollowedUsers();
+  const { messageUsers, isLoading, isError } = useMessageUsers();
   if (isLoading) return <Spinner />;
   if (isError) return <ServerError>Something Went Wrong</ServerError>;
   return (
@@ -14,7 +14,7 @@ const Messages = () => {
         <h1 className="text-xl font-bold">Messages</h1>
       </Header>
       <ul className="mt-16">
-        {followedUsers.map((user) => (
+        {messageUsers.map((user) => (
           <User key={user._id} user={user} to={`/message/${user.username}`} />
         ))}
       </ul>

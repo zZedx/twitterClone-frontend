@@ -10,6 +10,11 @@ const config = {
   withCredentials: true,
 };
 
+export const getMessageUser = errorHandler(async() => {
+  const res = await axios.get(apiUrl + "messages/users", config);
+  return res.data;
+});
+
 export const getMessages = errorHandler(async (room) => {
   const { data } = await axios.get(`${apiUrl}messages/${room}`, config);
   return data.messages;
