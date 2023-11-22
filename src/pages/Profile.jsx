@@ -26,7 +26,7 @@ const Profile = () => {
   const { user: currentUser } = useCurrentUser();
   const { user, isLoading, isError } = useUserProfile(username);
   const { logout, status } = useLogout();
-  const { deleteAccount } = useDeleteAccount();
+  const { deleteAccount , status : deleteStatus} = useDeleteAccount();
 
   if (isLoading) return <Spinner />;
   if (!user || isError) return <ServerError>Profile not found</ServerError>;
@@ -105,6 +105,7 @@ const Profile = () => {
                         <ConfirmDelete
                           onConfirm={handleDelete}
                           text={"Account"}
+                          disabled={deleteStatus === "pending"}
                         />
                       </FullModal.Window>
                     </FullModal>

@@ -1,4 +1,4 @@
-const ConfirmDelete = ({ onConfirm, onCloseFullModal , text}) => {
+const ConfirmDelete = ({ onConfirm, onCloseFullModal, text, disabled }) => {
   return (
     <div className="relative z-50 flex flex-col items-center justify-center rounded-xl">
       <h1 className="text-xl font-bold">Delete {text}</h1>
@@ -15,6 +15,7 @@ const ConfirmDelete = ({ onConfirm, onCloseFullModal , text}) => {
         <button
           className="w-1/2 px-4 py-2 text-white bg-red-500 rounded-xl"
           onClick={onConfirm}
+          disabled={disabled}
         >
           Delete
         </button>

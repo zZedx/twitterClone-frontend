@@ -31,7 +31,7 @@ const PostOptions = ({ postId, isComment }) => {
               </ModalList.Item>
             </FullModal.Button>
             <FullModal.Window name={"delete"}>
-                <ConfirmDelete onConfirm={onClickDelete} text={"Post"}/>
+                <ConfirmDelete onConfirm={onClickDelete} text={"Post"} disabled={deleteStatus === "pending"}/>
             </FullModal.Window>
           </FullModal>
         </ModalList>
