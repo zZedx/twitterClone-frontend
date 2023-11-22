@@ -29,3 +29,8 @@ export const deleteAccount = errorHandler(async() => {
     const res = await axios.delete(apiUrl + "users/deleteAccount", config);
     return res.data;
 });
+
+export const getSuggestedUsers = errorHandler(async() => {
+    const res = await axios.get(apiUrl + "users/suggestedUsers", config);
+    return res.data;
+});

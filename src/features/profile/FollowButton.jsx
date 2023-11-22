@@ -6,7 +6,8 @@ const FollowButton = ({ userId, username }) => {
   const { user: currentUser } = useCurrentUser();
   const { followUnfollow, status } = useFollowUnfollow(username);
 
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.stopPropagation();
     followUnfollow();
   };
   return (
