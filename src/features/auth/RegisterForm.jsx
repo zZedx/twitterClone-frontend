@@ -41,7 +41,7 @@ const RegisterForm = () => {
             type="text"
             id="username"
             placeholder="John doe"
-            disabled={status === "loading"}
+            disabled={status === "pending"}
             {...register("username", {
               required: {
                 value: true,
@@ -74,7 +74,7 @@ const RegisterForm = () => {
             type="email"
             id="email"
             placeholder="test@gmail.com"
-            disabled={status === "loading"}
+            disabled={status === "pending"}
             {...register("email", {
               required: {
                 value: true,
@@ -102,7 +102,7 @@ const RegisterForm = () => {
             type="password"
             id="passwordTemp"
             placeholder="********"
-            disabled={status === "loading"}
+            disabled={status === "pending"}
             {...register("passwordTemp", {
               required: {
                 value: true,
@@ -132,7 +132,7 @@ const RegisterForm = () => {
             type="password"
             id="password"
             placeholder="********"
-            disabled={status === "loading"}
+            disabled={status === "pending"}
             {...register("password", {
               required: {
                 value: true,
@@ -153,7 +153,7 @@ const RegisterForm = () => {
           type="submit"
           size="large"
           width="full"
-          disabled={status === "loading"}
+          disabled={status === "pending"}
           style={{ marginTop: "1.2rem" }}
         >
           Login
