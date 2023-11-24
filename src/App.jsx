@@ -20,6 +20,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import ServerError from "./ui/ServerError";
 import Messages from "./pages/Messages";
 import MessageRoom from "./features/Messaging/MessageRoom";
+import FollowersFollowing from "./features/profile/FollowersFollowing";
 
 const router = createBrowserRouter([
   {
@@ -58,6 +59,14 @@ const router = createBrowserRouter([
       {
         path: "/:username",
         element: <Profile />,
+      },
+      {
+        path: "/:username/following",
+        element: <FollowersFollowing />,
+      },
+      {
+        path: "/:username/followers",
+        element: <FollowersFollowing />,
       },
       {
         path: "/post/:postId",

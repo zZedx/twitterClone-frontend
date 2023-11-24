@@ -138,14 +138,14 @@ const Profile = () => {
         </span>
 
         <div className="flex gap-6 mt-2 mb-3">
-          <div className="flex gap-1">
+          <Link to={`/${username}/following`} className="flex gap-1">
             <span className="font-semibold">{following.length}</span>
             <span className="text-white/40">Following</span>
-          </div>
-          <div className="flex gap-1">
+          </Link>
+          <Link to={`/${username}/followers`} className="flex gap-1">
             <span className="font-semibold">{followers.length}</span>
             <span className="text-white/40">Followers</span>
-          </div>
+          </Link>
         </div>
       </div>
       <ul className="flex h-12">

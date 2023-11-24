@@ -39,7 +39,7 @@ const LoginForm = () => {
             type="email"
             id="email"
             disabled={status === "loading"}
-            // defaultValue={"kartik@gmail.com"}
+            defaultValue={"testuser@gmail.com"}
             {...register("email", { required: true })}
             className="p-2 bg-transparent border rounded"
           />
@@ -53,7 +53,7 @@ const LoginForm = () => {
             type="password"
             id="password"
             disabled={status === "loading"}
-            // defaultValue={"kartik"}
+            defaultValue={"test1234"}
             {...register("password", { required: true })}
             className="p-2 bg-transparent border rounded"
           />
