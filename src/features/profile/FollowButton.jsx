@@ -10,6 +10,7 @@ const FollowButton = ({ userId, username }) => {
     e.stopPropagation();
     followUnfollow();
   };
+  if(currentUser._id === userId) return null
   return (
     <>
       {currentUser.following.includes(userId) ? (
