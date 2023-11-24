@@ -11,6 +11,8 @@ This is a Twitter clone built using the MERN stack (MongoDB, Express.js, React, 
 
 - **User Authentication and Authorization:** Users can create accounts, sign in, and enjoy a secure and authenticated experience.
 
+- **Private Messaging:** Users can send private message to other users
+
 - **Create Posts:** Users can create and publish posts to share their thoughts and updates.
 
 - **Like and Comment:** Interact with posts by liking them and leaving comments to engage with other users.
@@ -25,6 +27,7 @@ This is a Twitter clone built using the MERN stack (MongoDB, Express.js, React, 
 - Express.js
 - React
 - Node.js
+- Socket.io
 - JWT (JSON Web Tokens) for authentication
 - Tailwind CSS for styling
 - React Router for routing
