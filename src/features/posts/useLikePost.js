@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { likePost as likePostApi} from "../../services/apiPosts";
+import toast from "react-hot-toast";
 
 const useLikePost = () => {
   const queryClient = useQueryClient();
@@ -8,6 +9,9 @@ const useLikePost = () => {
     onSuccess: () => {
       queryClient.invalidateQueries("posts");
     },
+    onError: (e) => {
+      toast.error(e.message);
+    }
   });
   return { likePost, status };
 };
